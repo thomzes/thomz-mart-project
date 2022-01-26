@@ -22,7 +22,7 @@
 
             <div class="col-md-6">
                 <div class="card">
-                    <h3 class="text-center"><span class="text-danger">Hi....</span><strong>{{ Auth::user()->name }}</strong> Welcome To Thomz Market</h3>
+                    <h3 class="text-center">Welcome back! <strong>{{ Auth::user()->name }}</strong> Welcome To Thomz Market</h3>
                 </div>
             </div> 
 

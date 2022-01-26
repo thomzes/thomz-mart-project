@@ -22,7 +22,7 @@
 
             <div class="col-md-6">
                 <div class="card">
-                    <h3 class="text-center"><span class="text-danger">Hi....</span><strong>{{ Auth::user()->name }}</strong> Update Your Profile</h3>
+                    <h3 class="text-center"><strong>Update Your Profile<strong></h3>
 
                     <div class="card-body">
                         <form action="{{ route('user.profile.store') }}" method="post" enctype="multipart/form-data">
