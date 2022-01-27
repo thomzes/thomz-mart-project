@@ -13,7 +13,8 @@ class BrandController extends Controller
     {
         $brands = Brand::latest()->get();
         return view('backend.brand.brand_view', compact('brands'));
-    }
+
+    } //end method
 
     public function BrandStore(Request $request)
     {
@@ -46,13 +47,14 @@ class BrandController extends Controller
 
         return redirect()->back()->with($notification);
 
-    }
+    } //end method
 
     public function BrandEdit($id)
     {
         $brand = Brand::findOrFail($id);
         return view('backend.brand.brand_edit', compact('brand'));
-    }
+
+    } //end method
 
     public function BrandUpdate(Request $request)
     {
@@ -101,7 +103,25 @@ class BrandController extends Controller
                 return redirect()->route('all.brand')->with($notification);
         }
         
-    }
+    } //end method
+
+    public function BrandDelete($id)
+    {
+        $brand = Brand::findOrFail($id);
+        $img = $brand->brand_image;
+        unlink($img);
+
+        Brand::findOrFail($id)->delete();
+
+        // Notification Toastr
+        $notification = array(
+            'message' => 'Brand Deleted Successfully!',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->back()->with($notification);
+
+    } //end method
 
 
 }
