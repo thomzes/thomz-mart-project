@@ -8,52 +8,60 @@
     <section class="content">
       <div class="row"> 
 
-        {{-- Edit Category Page --}}
+        {{-- Edit Sub Category Page --}}
         <div class="col-lg-12">
 
             <div class="box">
                <div class="box-header with-border">
-                 <h3 class="box-title">Edit Category</h3>
+                 <h3 class="box-title">Edit Sub Category</h3>
                </div>
                <!-- /.box-header -->
                <div class="box-body">
                    <div class="table-responsive">
-                    <form method="post" action="{{ route('category.update',$categories->id) }}">
+                    <form method="post" action="{{ route('subcategory.update') }}">
                         @csrf
-                        
-                        <input type="hidden" name="id" value="{{ $categories->id }}">
+
+                            <input type="hidden" name="id" value="{{ $subcategories->id }}">
+
                             <div class="form-group">
-                                <h5>Category English<span class="text-danger">*</span></h5>
+                                <h5>Category Select <span class="text-danger">*</span></h5>
                                 <div class="controls">
-                                    <input type="text" name="category_name_en" class="form-control" value="{{ $categories->category_name_en }}">
-                                    @error('category_name_en')
+                                    <select name="category_id" required="" class="form-control">
+                                        <option value="" selected disabled>Select Category</option>
+
+                                        @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}" {{ $category->id == $subcategories->category_id ? 'selected' : '' }}>{{ $category->category_name_en }}</option>
+                                        @endforeach
+
+                                    </select>
+                                    @error('category_id')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <h5>Category Indonesia<span class="text-danger">*</span></h5>
+                                <h5>Sub Category English<span class="text-danger">*</span></h5>
                                 <div class="controls">
-                                    <input type="text" name="category_name_idn" class="form-control" value="{{ $categories->category_name_idn }}" >
-                                    @error('category_name_idn')
+                                    <input type="text" name="subcategory_name_en" class="form-control" value="{{ $subcategories->subcategory_name_en }}">
+                                    @error('subcategories_name_en')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <h5>Category Icon<span class="text-danger">*</span></h5>
+                                <h5>Sub Category Indonesia<span class="text-danger">*</span></h5>
                                 <div class="controls">
-                                    <input type="text" name="category_icon" class="form-control" value="{{ $categories->category_icon }}" >
-                                    @error('category_icon')
+                                    <input type="text" name="subcategory_name_idn" class="form-control" value="{{ $subcategories->subcategory_name_idn }}">
+                                    @error('subcategories_name_idn')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
 
                            <div class="text-xs-right">
-                               <a href="{{ route('all.category') }}" class="btn btn-rounded btn-warning mb-5">Back</a>
+                               <a href="{{ route('all.subcategory') }}" class="btn btn-rounded btn-warning mb-5">Back</a>
                                <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Update">
                             </div>
                        </form>
