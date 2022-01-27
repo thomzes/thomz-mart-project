@@ -12,7 +12,7 @@ class CategoryController extends Controller
     {
         $categories = Category::latest()->get();
         return view('backend.category.category_view', compact('categories'));
-    }
+    } //end method
 
     public function CategoryStore(Request $request)
     {
@@ -40,14 +40,14 @@ class CategoryController extends Controller
     
             return redirect()->back()->with($notification);
 
-    }
+    } //end method
 
     public function CategoryEdit($id)
     {
         $categories = Category::findOrFail($id);
         return view('backend.category.category_edit', compact('categories'));
 
-    }
+    } //end method
 
     public function CategoryUpdate(Request $request)
     {
@@ -69,8 +69,21 @@ class CategoryController extends Controller
         );
 
         return redirect()->route('all.category')->with($notification);
-    }
 
+    } //end method
+
+    public function CategoryDelete($id)
+    {
+        Category::findOrFail($id)->delete();
+
+        // Notification Toastr
+        $notification = array(
+            'message' => 'Category Deleted Successfully!',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->back()->with($notification);
+    }
 
 
 }
