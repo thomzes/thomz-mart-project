@@ -81,7 +81,7 @@ class BrandController extends Controller
             // Notification Toastr
             $notification = array(
                 'message' => 'Brand Updated Successfully!',
-                'alert-type' => 'info'
+                'alert-type' => 'success'
             );
     
             return redirect()->route('all.brand')->with($notification);
@@ -97,7 +97,7 @@ class BrandController extends Controller
                 // Notification Toastr
                 $notification = array(
                     'message' => 'Brand Updated Successfully!',
-                    'alert-type' => 'info'
+                    'alert-type' => 'success'
                 );
         
                 return redirect()->route('all.brand')->with($notification);
