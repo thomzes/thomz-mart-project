@@ -24,7 +24,7 @@ class CreateProductsTable extends Migration
             $table->string('product_name_idn');
             $table->string('product_slub_en');
             $table->string('product_slug_idn');
-            $table->stringid('product_code');
+            $table->string('product_code');
             $table->string('product_qty');
             $table->string('product_tags_en');
             $table->string('product_tags_idn');
@@ -36,7 +36,7 @@ class CreateProductsTable extends Migration
             $table->string('discount_price')->nullable();
             $table->string('short_desc_en');
             $table->string('short_desc_idn');
-            $table->string('long_desc_idn');
+            $table->string('long_desc_en');
             $table->string('long_desc_idn');
             $table->string('product_thumbnail');
             $table->integer('hot_deals')->nullable();
