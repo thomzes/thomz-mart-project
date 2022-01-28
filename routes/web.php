@@ -92,11 +92,15 @@ Route::prefix('category')->group(function() {
 
     // Admin Sub->Sub Category All Route
         Route::get('/sub/sub/view', [SubSubCategoryController::class, 'SubSubCategoryView'])->name('all.subsubcategory');
-        Route::post('/sub/store', [SubSubCategoryController::class, 'SubSubCategoryStore'])->name('subcategory.store');
-        Route::get('/sub/edit/{id}', [SubSubCategoryController::class, 'SubSubCategoryEdit'])->name('subcategory.edit');
-        Route::post('/sub/update', [SubSubCategoryController::class, 'SubSubCategoryUpdate'])->name('subcategory.update');
-        Route::get('/sub/delete/{id}', [SubSubCategoryController::class, 'SubSubCategoryDelete'])->name('subcategory.delete');
-
+        
+        
+        // Route::post('/sub/store', [SubSubCategoryController::class, 'SubSubCategoryStore'])->name('subcategory.store');
+        // Route::get('/sub/edit/{id}', [SubSubCategoryController::class, 'SubSubCategoryEdit'])->name('subcategory.edit');
+        // Route::post('/sub/update', [SubSubCategoryController::class, 'SubSubCategoryUpdate'])->name('subcategory.update');
+        // Route::get('/sub/delete/{id}', [SubSubCategoryController::class, 'SubSubCategoryDelete'])->name('subcategory.delete');
+        
+        // Ajax route
+        Route::get('/subcategory/ajax/{category_id}', [SubSubCategoryController::class, 'GetSubCategory']);
 });
 
 

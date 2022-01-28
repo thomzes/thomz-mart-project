@@ -13,7 +13,7 @@ class SubCategoryController extends Controller
     {
         $categories = Category::orderBy('category_name_en', 'ASC')->get();
         $subcategories = SubCategory::latest()->get();
-        return view('backend.category.subcategory_view', compact('subcategories', 'categories'));
+        return view('backend.subcategory.subcategory_view', compact('subcategories', 'categories'));
 
     } //end method
 
@@ -49,7 +49,7 @@ class SubCategoryController extends Controller
     {
         $categories = Category::orderBy('category_name_en', 'ASC')->get();
         $subcategories = SubCategory::findOrFail($id);
-        return view('backend.category.subcategory_edit', compact('subcategories', 'categories'));
+        return view('backend.subcategory.subcategory_edit', compact('subcategories', 'categories'));
 
     } //end method
 
