@@ -9,6 +9,7 @@ use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\AdminProfileController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SubSubCategoryController;
 
 /*
@@ -53,12 +54,9 @@ Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function 
 
 // User All Routes
 Route::get('/', [IndexController::class, 'index']);
-// User Logout Route
 Route::get('/user/logout', [IndexController::class, 'UserLogout'])->name('user.logout');
-// User Profile Route
 Route::get('/user/profile', [IndexController::class, 'UserProfile'])->name('user.profile');
 Route::post('/user/profile/store', [IndexController::class, 'UserProfileStore'])->name('user.profile.store');
-// User Change Password Route
 Route::get('/user/change/password', [IndexController::class, 'UserChangePassword'])->name('change.password');
 Route::post('/user/password/update', [IndexController::class, 'UserPasswordUpdate'])->name('user.password.update');
 
@@ -99,6 +97,17 @@ Route::prefix('category')->group(function() {
 
         // Ajax route
         Route::get('/subcategory/ajax/{category_id}', [SubSubCategoryController::class, 'GetSubCategory']);
+});
+
+
+
+// Admin Products All Route
+Route::prefix('product')->group(function() {
+    Route::get('/add', [ProductController::class, 'AddProduct'])->name('add-product');
+    // Route::post('/store', [BrandController::class, 'BrandStore'])->name('brand.store');
+    // Route::get('/edit/{id}', [BrandController::class, 'BrandEdit'])->name('brand.edit');
+    // Route::post('/update', [BrandController::class, 'BrandUpdate'])->name('brand.update');
+    // Route::get('/delete/{id}', [BrandController::class, 'BrandDelete'])->name('brand.delete');
 });
 
 
