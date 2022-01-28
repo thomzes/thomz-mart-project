@@ -31,7 +31,7 @@
                             <tr>
                                 <td>{{ $item['category']['category_name_en'] }}</td>
                                 <td>{{ $item['subcategory']['subcategory_name_en'] }}</td>
-                                <td>{{ $item->subsubcategory_name_idn }}</td>
+                                <td>{{ $item->subsubcategory_name_en }}</td>
                                 <td>
                                     <a href="{{ route('subcategory.edit',$item->id) }}" class="btn btn-info" title="Edit Data"><i class="fa fa-pencil"></i></a>
                                     <a href="{{ route('subcategory.delete',$item->id) }}" class="btn btn-danger" id="delete" id="Delete Data"><i class="fa fa-trash"></i></a>
@@ -59,7 +59,7 @@
                <!-- /.box-header -->
                <div class="box-body">
                    <div class="table-responsive">
-                    <form method="post" action="{{ route('subcategory.store') }}">
+                    <form method="post" action="{{ route('subsubcategory.store') }}">
                         @csrf
                             <div class="form-group">
                                 <h5>Category Select <span class="text-danger">*</span></h5>
@@ -112,7 +112,7 @@
                             </div>
 
                            <div class="text-xs-right">
-                               <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add SubCategory">
+                               <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add Sub-SubCategory">
                             </div>
                        </form>
                    </div>

@@ -20,7 +20,7 @@ class CreateSubSubCategoriesTable extends Migration
             $table->string('subsubcategory_name_en');
             $table->string('subsubcategory_name_idn');
             $table->string('subsubcategory_slug_en');
-            $table->string('subsubcategory_slug_id');
+            $table->string('subsubcategory_slug_idn');
             $table->timestamps();
         });
     }
