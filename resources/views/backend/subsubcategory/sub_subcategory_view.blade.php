@@ -33,8 +33,8 @@
                                 <td>{{ $item['subcategory']['subcategory_name_en'] }}</td>
                                 <td>{{ $item->subsubcategory_name_en }}</td>
                                 <td>
-                                    <a href="{{ route('subcategory.edit',$item->id) }}" class="btn btn-info" title="Edit Data"><i class="fa fa-pencil"></i></a>
-                                    <a href="{{ route('subcategory.delete',$item->id) }}" class="btn btn-danger" id="delete" id="Delete Data"><i class="fa fa-trash"></i></a>
+                                    <a href="{{ route('subsubcategory.edit',$item->id) }}" class="btn btn-info" title="Edit Data"><i class="fa fa-pencil"></i></a>
+                                    <a href="{{ route('subsubcategory.delete',$item->id) }}" class="btn btn-danger" id="delete" id="Delete Data"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
                         @endforeach
@@ -49,7 +49,7 @@
         </div>
         <!-- /.col -->
 
-        {{-- Add Category Page --}}
+        {{-- Add Sub-SubCategory Page --}}
         <div class="col-lg-4">
 
             <div class="box">

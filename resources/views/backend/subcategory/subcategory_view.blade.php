@@ -47,7 +47,7 @@
         </div>
         <!-- /.col -->
 
-        {{-- Add Category Page --}}
+        {{-- Add Sub Category Page --}}
         <div class="col-lg-4">
 
             <div class="box">

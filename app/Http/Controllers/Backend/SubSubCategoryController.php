@@ -26,14 +26,6 @@ class SubSubCategoryController extends Controller
 
     } //end method
 
-    public function SubCategoryEdit($id)
-    {
-        $categories = Category::orderBy('category_name_en', 'ASC')->get();
-        $subcategories = SubCategory::findOrFail($id);
-        return view('backend.subcategory.subcategory_edit', compact('subcategories', 'categories'));
-
-    } //end method
-
     public function SubSubCategoryStore(Request $request)
     {
         $request->validate(
@@ -50,8 +42,8 @@ class SubSubCategoryController extends Controller
                 'subcategory_id' => $request->subcategory_id,
                 'subsubcategory_name_en' => $request->subsubcategory_name_en,
                 'subsubcategory_name_idn' => $request->subsubcategory_name_idn,
-                'subsubcategory_slug_en' => strtolower(str_replace(' ','-',$request->subsubcategory_slug_en)),
-                'subsubcategory_slug_idn' => strtolower(str_replace(' ','-',$request->subsubcategory_slug_idn)),
+                'subsubcategory_slug_en' => strtolower(str_replace(' ','-',$request->subsubcategory_name_en)),
+                'subsubcategory_slug_idn' => strtolower(str_replace(' ','-',$request->subsubcategory_name_idn)),
             ]);
     
             // Notification Toastr
@@ -63,6 +55,54 @@ class SubSubCategoryController extends Controller
             return redirect()->back()->with($notification);
 
     } //end method
+
+    public function SubSubCategoryEdit($id)
+    {
+        $categories = Category::orderBy('category_name_en', 'ASC')->get();
+        $subcategories = SubCategory::orderBy('subcategory_name_en', 'ASC')->get();
+        $subsubcategories = SubSubCategory::findOrFail($id);
+        return view('backend.subsubcategory.sub_subcategory_edit', compact('subsubcategories', 'subcategories', 'categories'));
+
+    } //end method
+
+    public function SubSubCategoryUpdate(Request $request)
+    {
+        $subsubcat_id = $request->id;
+
+        SubSubCategory::findOrFail($subsubcat_id)->update(
+            [
+                'category_id' => $request->category_id,
+                'subcategory_id' => $request->subcategory_id,
+                'subsubcategory_name_en' => $request->subsubcategory_name_en,
+                'subsubcategory_name_idn' => $request->subsubcategory_name_idn,
+                'subsubcategory_slug_en' => strtolower(str_replace(' ','-',$request->subsubcategory_name_en)),
+                'subsubcategory_slug_idn' => strtolower(str_replace(' ','-',$request->subsubcategory_name_idn)),
+            ]);
+    
+            // Notification Toastr
+            $notification = array(
+                'message' => 'Sub-SubCategory Updated Successfully!',
+                'alert-type' => 'info'
+            );
+    
+            return redirect()->route('all.subsubcategory')->with($notification);
+
+    } //end method
+
+    public function SubSubCategoryDelete($id)
+    {
+        SubSubCategory::findOrFail($id)->delete();
+
+        // Notification Toastr
+        $notification = array(
+            'message' => 'Sub-SubCategory Deleted Successfully!',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
+
 
 
 
