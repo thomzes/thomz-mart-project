@@ -286,10 +286,11 @@
                                 <div class="form-group">
                                     <h5>Main Thumbnail<span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="file" name="product_thumbnail" class="form-control"> 
+                                        <input type="file" name="product_thumbnail" class="form-control" onChange="mainThumUrl(this)"> 
                                         @error('product_thumbnail')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
+                                        <img src="" alt="" id="mainThmb">
                                     </div>
                                 </div>
                             </div>
@@ -476,6 +477,19 @@
             }
         });
     });
+</script>
+
+<script type="text/javascript">
+    function mainThumUrl(input)
+    {
+        if(input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#mainThmb').attr('src',e.target.result).widht(80).height(80);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 </script>
 
 @endsection
