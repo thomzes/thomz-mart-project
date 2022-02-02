@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
             $table->integer('subsubcategory_id');
             $table->string('product_name_en');
             $table->string('product_name_idn');
-            $table->string('product_slub_en');
+            $table->string('product_slug_en');
             $table->string('product_slug_idn');
             $table->string('product_code');
             $table->string('product_qty');
