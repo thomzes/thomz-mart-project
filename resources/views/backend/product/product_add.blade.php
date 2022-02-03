@@ -198,7 +198,7 @@
                                 <div class="form-group">
                                     <h5>Product Size En<span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="text" name="product_size_en" class="form-control" value="Lorem,Ipsum,Amet" data-role="tagsinput" required> 
+                                        <input type="text" name="product_size_en" class="form-control" value="XS,S,M,L,XL" data-role="tagsinput" required> 
                                         @error('product_size_en')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -211,7 +211,7 @@
                                 <div class="form-group">
                                     <h5>Product Size Idn<span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="text" name="product_size_idn" class="form-control" value="Lorem,Ipsum,Amet" data-role="tagsinput" required> 
+                                        <input type="text" name="product_size_idn" class="form-control" value="XS,S,M,L,XL" data-role="tagsinput" required> 
                                         @error('product_size_idn')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -230,8 +230,8 @@
                                 <div class="form-group">
                                     <h5>Product Color En<span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="text" name="product_color_En" class="form-control" value="Lorem,Ipsum,Amet" data-role="tagsinput" required> 
-                                        @error('product_color_En')
+                                        <input type="text" name="product_color_en" class="form-control" value="Red,Black,White" data-role="tagsinput" required> 
+                                        @error('product_color_en')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
@@ -243,7 +243,7 @@
                                 <div class="form-group">
                                     <h5>Product Color Idn<span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="text" name="product_color_idn" class="form-control" value="Lorem,Ipsum,Amet" data-role="tagsinput" required> 
+                                        <input type="text" name="product_color_idn" class="form-control" value="Merah,Hitam,Putih" data-role="tagsinput" required> 
                                         @error('product_color_idn')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -323,7 +323,7 @@
                                 <div class="form-group">
                                     <h5>Short Description English<span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <textarea name="short_desc_en" id="textarea" class="form-control" required placeholder="Short Description Indonesia Indonesia" required></textarea>
+                                        <textarea name="short_desc_en" id="textarea" class="form-control" required placeholder="Short Description English..." required></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -333,7 +333,7 @@
                                 <div class="form-group">
                                     <h5>Short Description Indonesia<span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <textarea name="short_desc_idn" id="textarea" class="form-control" required placeholder="Short Description Indonesia text" required></textarea>
+                                        <textarea name="short_desc_idn" id="textarea" class="form-control" required placeholder="Short Description Indonesia..." required></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -351,7 +351,7 @@
                                     <h5>Long Description English<span class="text-danger">*</span></h5>
                                     <div class="controls">
                                         <textarea id="editor1" name="long_desc_en" rows="10" cols="80" required>
-                                            Long Description English
+                                            Long Description English...
                                         </textarea>
                                     </div>
                                 </div>
@@ -363,7 +363,7 @@
                                     <h5>Long Description Indonesia<span class="text-danger">*</span></h5>
                                     <div class="controls">
                                         <textarea id="editor2" name="long_desc_idn" rows="10" cols="80" required>
-                                            Long Description Indonesia
+                                            Long Description Indonesia...
                                         </textarea> 
                                     </div>
                                 </div>

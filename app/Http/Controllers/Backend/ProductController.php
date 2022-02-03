@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Carbon\Carbon;
 use App\Models\Brand;
+use App\Models\Product;
 use App\Models\Category;
+use App\Models\MultiImg;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Product;
-use Carbon\Carbon;
+use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
 {
@@ -29,7 +31,7 @@ class ProductController extends Controller
         $save_url = 'upload/product/thumbnail/'.$name_gen;
 
 
-        Product::insert([            
+        $product_id = Product::insertGetId([            
             'brand_id' => $request->brand_id,
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
@@ -62,18 +64,36 @@ class ProductController extends Controller
             'product_thumbnail' => $save_url,
             'status' => 1,
             'created_at' => Carbon::now(),
-
-
-
-
-
-
         ]);
 
+        // Multiple Image Code Start
+        $images = $request->file('multi_img');
+        foreach ($images as $image){
+            $make_me = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            Image::make($image)->resize(915,1000)->save('upload/products/multi-image/'.$make_me);
+            $uploadPath = 'upload/product/multi-image/'.$make_me;
 
+            MultiImg::insert([
 
+                'product_id' => $product_id,
+                'photo_name' => $uploadPath,
+                'created_at' => Carbon::now(),
+       
+            ]);
+        }
+        //Multiple Image Code End
+
+        // Notification Toastr
+        $notification = array(
+            'message' => 'Product Inserted Successfully!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
 
     } //end method
+
+    
 
 
 }
