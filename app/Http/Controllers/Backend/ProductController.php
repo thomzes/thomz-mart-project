@@ -9,6 +9,8 @@ use App\Models\Category;
 use App\Models\MultiImg;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\SubCategory;
+use App\Models\SubSubCategory;
 use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
@@ -99,6 +101,20 @@ class ProductController extends Controller
 
         return view('backend.product.product_view',compact('products'));
     } //end method
+
+    public function EditProduct($id)
+    {
+        $categories = Category::latest()->get();
+        $brands = Brand::latest()->get();
+        $subcategories = SubCategory::latest()->get();
+        $subsubcategories = SubSubCategory::latest()->get();
+        $products = Product::findOrFail($id);
+
+        return view('backend.product.product_edit', compact('categories', 'brands', 'subcategories', 'subsubcategories', 'products'));
+
+
+
+    }
 
     
 
