@@ -73,7 +73,7 @@ class ProductController extends Controller
         foreach ($images as $image){
             $make_me = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
             Image::make($image)->resize(915,1000)->save('upload/products/multi-image/'.$make_me);
-            $uploadPath = 'upload/product/multi-image/'.$make_me;
+            $uploadPath = 'upload/products/multi-image/'.$make_me;
 
             MultiImg::insert([
 
@@ -105,13 +105,15 @@ class ProductController extends Controller
 
     public function EditProduct($id)
     {
+        $multiImgs = MultiImg::where('product_id', $id)->get();
+        
+        $subsubcategories = SubSubCategory::latest()->get();
         $categories = Category::latest()->get();
         $brands = Brand::latest()->get();
         $subcategories = SubCategory::latest()->get();
-        $subsubcategories = SubSubCategory::latest()->get();
         $products = Product::findOrFail($id);
 
-        return view('backend.product.product_edit', compact('categories', 'brands', 'subcategories', 'subsubcategories', 'products'));
+        return view('backend.product.product_edit', compact('categories', 'brands', 'subcategories', 'subsubcategories','products', 'multiImgs'));
 
     } //end method
 
