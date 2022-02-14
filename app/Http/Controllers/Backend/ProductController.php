@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\SubCategory;
 use App\Models\SubSubCategory;
+use Illuminate\Support\Facades\Redis;
 use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
@@ -162,6 +163,67 @@ class ProductController extends Controller
         );
 
         return redirect()->route('manage-product')->with($notification);
+
+    } //end method
+
+    // Multiple Image Update
+    public function MultiImageUpdate(Request $request)
+    {
+        $imgs = $request->multi_img;
+
+        foreach ($imgs as $id => $img) {
+            $imgDel = MultiImg::findOrFail($id);
+            unlink($imgDel->photo_name);
+
+            $make_name = hexdec(uniqid()).'.'.$img->getClientOriginalExtension();
+            Image::make($img)->resize(915,1000)->save('upload/products/multi-image/'.$make_name);
+            $uploadPath = 'upload/products/multi-image/'.$make_name;
+
+            MultiImg::where('id', $id)->update([
+                'photo_name' => $uploadPath,
+                'updated_at' => Carbon::now(),
+
+            ]);
+
+        } //end foreach
+
+        // Notification Toastr
+        $notification = array(
+            'message' => 'Product Image Updated Successfully!',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->back()->with($notification);
+
+
+    } //end method
+
+    
+    //Thumbnail Image Update
+    public function ThumbnailImageUpdate(Request $request)
+    {
+        $pro_id = $request->id;
+        $oldImg = $request->old_img;
+        unlink($oldImg);
+
+        $image = $request->file('product_thumbnail');
+        $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+        Image::make($image)->resize(915,1000)->save('upload/products/thumbnail/'.$name_gen);
+        $save_url = 'upload/products/thumbnail/'.$name_gen;
+
+        Product::findOrFail($pro_id)->update([
+            'product_thumbnail' => $save_url,
+            'updated_at' => Carbon::now(),
+
+        ]);
+
+        // Notification Toastr
+        $notification = array(
+            'message' => 'Product Image Thumbnail Updated Successfully!',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->back()->with($notification);
 
     } //end method
 

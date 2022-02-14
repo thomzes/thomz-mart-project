@@ -435,11 +435,12 @@
 					<h4 class="box-title">Product Multiple Image <strong>Update</strong></h4>
 				  </div>
 
-                  <form action="" method="" enctype="multipart/form-data">
+                  <form action="{{ route('update-product-image') }}" method="post" enctype="multipart/form-data">
+                    @csrf
                         <div class="row row-sm">     
                             @foreach ($multiImgs as $img)
                                 
-                            <div class="col-md-3">
+                            <div class="col-md-3 mt-3">
                                 <div class="card">
                                     <img src="{{ asset($img->photo_name) }}" class="card-img-top" style="height: 130px; width: 280px;">
                                     <div class="card-body">
@@ -449,7 +450,7 @@
                                         <p class="card-text">
                                             <div class="form-group">
                                                 <label for="" class="form-control-label">Change Image <span class="tx-danger">*</span></label>
-                                                <input type="file" class="form-control" name="multi_img[ $img->id ]">
+                                                <input type="file" class="form-control" name="multi_img[{{ $img->id }}]">
                                             </div>
                                         </p>
                                     </div>
@@ -480,6 +481,68 @@
         {{-- end row --}}
 
     </section>
+
+    {{-- ==================================== End Multiple Image Update Area ========================================== --}}
+
+
+        {{-- ==================================== Start Thumbnail Image Update Area ========================================== --}}
+
+        <section class="content">
+            <div class="row">
+    
+                <div class="col-md-12">
+                    <div class="box bt-3 border-info">
+                      <div class="box-header">
+                        <h4 class="box-title">Product Thumbnail Image <strong>Update</strong></h4>
+                      </div>
+    
+                      <form action="{{ route('update-product-thumbnail') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        
+                        <input type="hidden" name="id" value="{{ $products->id }}">
+                        <input type="hidden" name="old_img" value="{{ $products->product_thumbnail }}">
+
+                            <div class="row row-sm">     
+                                   
+                                <div class="col-md-3 mt-3">
+                                    <div class="card">
+                                        <img src="{{ asset($products->product_thumbnail) }}" class="card-img-top" style="height: 130px; width: 280px;">
+                                        <div class="card-body">
+                                            <p class="card-text">
+                                                <div class="form-group">
+                                                    <label for="" class="form-control-label">Change Image <span class="tx-danger">*</span></label>
+                                                    <input type="file" name="product_thumbnail" class="form-control" onChange="mainThumUrl(this)"> 
+                                                    <img src="" id="mainThmb">
+                                                </div>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- end col-md-3 --}}            
+    
+                            </div>
+    
+                            <div class="text-xs-right mx-4">
+                                <a href="{{ route('manage-product') }}" class="btn btn-rounded btn-warning mb-5">Back</a>
+                                <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Update Image">
+                            </div>
+    
+                            <br>
+                    
+                    
+                      </form>
+    
+                    </div>
+                  </div>
+    
+    
+    
+            </div>
+            {{-- end row --}}
+    
+        </section>
+    
+        {{-- ==================================== End Thumbnail Image Update Area ========================================== --}}
 
 
 
