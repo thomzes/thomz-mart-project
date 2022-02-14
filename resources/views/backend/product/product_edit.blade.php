@@ -18,8 +18,10 @@
         <div class="box-body">
           <div class="row">
             <div class="col">
-                <form action="{{ route('product-store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('product-update') }}" method="post">
                     @csrf
+
+                    <input type="hidden" name="id" value="{{ $products->id }}">
 
                   <div class="row">
                     <div class="col-12">
