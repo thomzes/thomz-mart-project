@@ -90,7 +90,7 @@ class SliderController extends Controller
 
             // Notification Toastr
             $notification = array(
-                'message' => 'Slider Updated Successfully!',
+                'message' => 'Slider Updated Without Image Successfully!',
                 'alert-type' => 'success'
             );
 
@@ -98,8 +98,24 @@ class SliderController extends Controller
 
         }
 
+    } //end method
 
+    public function SliderDelete($id)
+    {
+        $slider = Slider::findOrFail($id);
+        $img = $slider->slider_img;
+        unlink($img);
 
+        Slider::findOrFail($id)->delete();
+
+        // Notification Toastr
+        $notification = array(
+            'message' => 'Slider Deleted Successfully!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    
 
     }
 

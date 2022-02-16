@@ -52,7 +52,7 @@
                                     @endif
                                     
                                     <a href="{{ route('slider.edit',$item->id) }}" class="btn btn-info btn-sm" title="Edit Data"><i class="fa fa-pencil"></i></a>
-                                    <a href="{{ route('brand.delete',$item->id) }}" class="btn btn-danger btn-sm" id="delete" id="Delete Data"><i class="fa fa-trash"></i></a>
+                                    <a href="{{ route('slider.delete',$item->id) }}" class="btn btn-danger btn-sm" id="delete" id="Delete Data"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
                         @endforeach
