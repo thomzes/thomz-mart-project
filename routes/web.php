@@ -12,7 +12,6 @@ use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubSubCategoryController;
-use App\Models\Slider;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,10 +29,15 @@ Route::group(['prefix'=> 'admin', 'middleware'=> ['admin:admin']], function() {
     Route::post('login', [AdminController::class, 'store'])->name('admin.login');
 });
 
+
+
+
+Route::middleware(['auth:admin'])->group(function () {
+
 // Admin middleware
 Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
     return view('admin.index');
-})->name('dashboard');
+})->name('dashboard')->middleware('auth:admin');
 
 // Admin all routes
 Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
@@ -45,13 +49,15 @@ Route::post('/admin/profile/store', [AdminProfileController::class, 'AdminProfil
 Route::get('/admin/change/password', [AdminProfileController::class, 'AdminChangePassword'])->name('admin.change.password');
 Route::post('/admin/update/password', [AdminProfileController::class, 'AdminUpdatePassword'])->name('admin.update.password');
 
+}); //end middleware admin
+
 
 
 // User middleware
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     $id = Auth::user()->id;
     $user = User::find($id);
-    return view('dashboard', compact('user'));
+    return view('dashboard',compact('user'));
 })->name('dashboard');
 
 // User All Routes
