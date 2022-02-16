@@ -5,12 +5,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\AdminProfileController;
-use App\Http\Controllers\Backend\ProductController;
-use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubSubCategoryController;
 
 /*
@@ -138,6 +139,17 @@ Route::prefix('slider')->group(function() {
     Route::get('/active/{id}', [SliderController::class, 'SliderActive'])->name('slider.active');
     Route::get('/inactive/{id}', [SliderController::class, 'SliderInactive'])->name('slider.inactive');
 });
+
+
+
+
+
+// ======================================== FRONTEND ALL ROUTES ======================================== //
+
+// Multi Language All Routes
+Route::get('/language/english', [LanguageController::class, 'English'])->name('english.language');
+Route::get('/language/indo', [LanguageController::class, 'Indo'])->name('indo.language');
+
 
 
 
