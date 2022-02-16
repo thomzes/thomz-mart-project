@@ -51,7 +51,7 @@
                                       <a href="{{ route('product.active',$item->id) }}" class="btn btn-success btn-sm" title="Active Now"><i class="fa fa-arrow-up"></i></a>
                                     @endif
                                     
-                                    <a href="{{ route('brand.edit',$item->id) }}" class="btn btn-info btn-sm" title="Edit Data"><i class="fa fa-pencil"></i></a>
+                                    <a href="{{ route('slider.edit',$item->id) }}" class="btn btn-info btn-sm" title="Edit Data"><i class="fa fa-pencil"></i></a>
                                     <a href="{{ route('brand.delete',$item->id) }}" class="btn btn-danger btn-sm" id="delete" id="Delete Data"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
