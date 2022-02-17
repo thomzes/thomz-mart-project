@@ -59,7 +59,7 @@ class CategoryController extends Controller
             'category_name_idn' => $request->category_name_idn,
             'category_slug_en' => strtolower(str_replace(' ','-',$request->category_name_en)),
             'category_slug_idn' => strtolower(str_replace(' ','-',$request->category_name_idn)),
-            'brand_icon' => $request->category_icon
+            'category_icon' => $request->category_icon
         ]);
 
         // Notification Toastr

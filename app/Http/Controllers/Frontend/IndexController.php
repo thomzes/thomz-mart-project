@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -12,7 +13,8 @@ class IndexController extends Controller
 {
     public function Index()
     {
-        return view('frontend.index');
+        $categories = Category::orderBy('category_name_en', 'ASC')->get();
+        return view('frontend.index', compact('categories'));
     }
 
     public function UserLogout()
