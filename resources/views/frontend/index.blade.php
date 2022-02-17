@@ -28,19 +28,47 @@
                     <li class="yamm-content">
                       <div class="row">
 
+                        {{-- GET SUBCATEGORY TABLE DATA --}}
+                        @php
+                          $subcategories = App\Models\SubCategory::where('category_id', $category->id)->orderBy('subcategory_name_en', 'ASC')->get();
+                        @endphp
+
+                      @foreach ($subcategories as $subcategory)
                         <div class="col-sm-12 col-md-3">
+
+                          <h2 class="title">
+                            @if (session()->get('language') == 'indo')
+                              {{ $subcategory->subcategory_name_idn }}
+                            @else
+                              {{ $subcategory->subcategory_name_en }}
+                            @endif
+                          </h2>
+
+                          {{-- GET SUBSUBCATEGORY TABLE DATA --}}
+                          @php
+                          $subsubcategories = App\Models\SubSubCategory::where('subcategory_id', $subcategory->id)->orderBy('subsubcategory_name_en', 'ASC')->get();
+                        @endphp
+
+                        @foreach($subsubcategories as $subsubcategory)
+
                           <ul class="links list-unstyled">
-                            <li><a href="#">Dresses</a></li>
-                            <li><a href="#">Shoes </a></li>
-                            <li><a href="#">Jackets</a></li>
-                            <li><a href="#">Sunglasses</a></li>
-                            <li><a href="#">Sport Wear</a></li>
-                            <li><a href="#">Blazers</a></li>
-                            <li><a href="#">Shirts</a></li>
-                            <li><a href="#">Shorts</a></li>
+                            
+                            <li><a href="#">
+                              @if (session()->get('language') == 'indo')
+                                {{ $subsubcategory->subsubcategory_name_idn }}
+                              @else
+                                {{ $subsubcategory->subsubcategory_name_en }}
+                              @endif  
+                            </a></li>
+                            
                           </ul>
+
+                        @endforeach
+                        {{-- END SUBSUBCATEGORY FOREACH --}}
                         </div>
                         <!-- /.col -->
+                      @endforeach
+                      {{-- END SUBCATEGORY FOREACH --}}
 
                       </div>
                       <!-- /.row --> 
@@ -53,7 +81,6 @@
 
                 <!-- /.menu-item -->
                 
-
 
                 <li class="dropdown menu-item"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon fa fa-paper-plane"></i>Kids and Babies</a> 
                   <!-- /.dropdown-menu --> </li>
