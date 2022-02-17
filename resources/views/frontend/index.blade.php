@@ -1062,9 +1062,6 @@
 
 
 
-
-
-
               @foreach($categories as $category)
               <div class="tab-pane" id="category{{ $category->id }}">
                 <div class="product-slider">
@@ -1081,8 +1078,20 @@
                           <div class="product-image">
                             <div class="image"> <a href="detail.html"><img  src="{{ asset($product->product_thumbnail) }}" alt=""></a> </div>
                             <!-- /.image -->
+
+                            @php
+                                $amount = $product->selling_price - $product->discount_price;
+                                $discount = ($amount / $product->selling_price) * 100;
+                            @endphp
+
+                            <div>
+                              @if ($product->discount_price == NULL)
+                                <div class="tag new"><span>new</span></div>
+                              @else
+                                <div class="tag hot"><span>{{ round($discount) }}%</span></div>
+                              @endif
+                            </div>
                             
-                            <div class="tag new"><span>new</span></div>
                           </div>
                           <!-- /.product-image -->
                           
@@ -1095,10 +1104,17 @@
                                 {{ $product->product_name_en }}
                               @endif
 
-                            </a></h3>
+                              </a></h3>
                             <div class="rating rateit-small"></div>
                             <div class="description"></div>
-                            <div class="product-price"> <span class="price"> $450.99 </span> <span class="price-before-discount">$ 800</span> </div>
+
+                            @if ($product->discount_price == NULL)
+                              <div class="product-price"> <span class="price">${{ $product->selling_price }}</span> </div>
+                            @else
+                            <div class="product-price"> <span class="price">${{ $product->discount_price }}</span><span class="price-before-discount">${{ $product->selling_price }}</span> </div>
+                            @endif
+
+                             
                             <!-- /.product-price --> 
                             
                           </div>
@@ -1128,12 +1144,9 @@
                     @empty
                       <h5 class="text-danger">No Product Found</h5>    
                     
-
-
                     @endforelse
                     {{-- END ALL PRODUCTS FOREACH --}}
                     
-                     
                   </div>
                   <!-- /.home-owl-carousel --> 
                 </div>
