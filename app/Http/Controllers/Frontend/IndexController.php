@@ -19,15 +19,16 @@ class IndexController extends Controller
         $sliders = Slider::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
         $products = Product::where('status', 1)->orderBy('id', 'DESC')->limit(6)->get();
 
-
         return view('frontend.index', compact('categories', 'sliders', 'products'));
-    }
+
+    } //end method
 
     public function UserLogout()
     {
         Auth::logout();
         return Redirect()->route('login');
-    }
+
+    } //end method
 
     public function UserProfile()
     {
@@ -35,7 +36,8 @@ class IndexController extends Controller
         $user = User::find($id);
 
         return view('frontend.profile.user_profile', compact('user'));
-    }
+
+    } //end method
 
     public function UserProfileStore(Request $request)
     {
@@ -60,7 +62,8 @@ class IndexController extends Controller
         );
 
         return redirect()->route('dashboard')->with($notification);
-    }
+
+    } //end method
 
     public function UserChangePassword()
     {
@@ -68,7 +71,8 @@ class IndexController extends Controller
         $user = User::find($id);
 
         return view('frontend.profile.change_password', compact('user'));
-    }
+
+    } //end method
 
     public function UserPasswordUpdate(Request $request)
     {
@@ -98,7 +102,16 @@ class IndexController extends Controller
         );
             return redirect()->back()->with($notification);
         }
-    }
+
+    } //end method
+
+    public function ProductDetails($id, $slug)
+    {
+        $product = Product::findOrFail($id);
+
+        return view('frontend.product.product_details', compact('product'));
+
+    } //end method
 
 
 }

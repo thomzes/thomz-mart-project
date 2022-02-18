@@ -151,7 +151,8 @@ Route::get('/language/english', [LanguageController::class, 'English'])->name('e
 Route::get('/language/indo', [LanguageController::class, 'Indo'])->name('indo.language');
 
 
-
+// Product Details Page URL
+Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
 
 
 
