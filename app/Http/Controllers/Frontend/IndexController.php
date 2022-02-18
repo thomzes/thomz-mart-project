@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\MultiImg;
 use App\Models\Product;
 use App\Models\Slider;
 use Illuminate\Support\Facades\Auth;
@@ -108,8 +109,9 @@ class IndexController extends Controller
     public function ProductDetails($id, $slug)
     {
         $product = Product::findOrFail($id);
+        $multiImg = MultiImg::where('product_id', $id)->get();
 
-        return view('frontend.product.product_details', compact('product'));
+        return view('frontend.product.product_details', compact('product', 'multiImg'));
 
     } //end method
 
