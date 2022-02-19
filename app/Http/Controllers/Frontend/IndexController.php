@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\MultiImg;
 use App\Models\Product;
 use App\Models\Slider;
+use App\Models\SubCategory;
 use GuzzleHttp\Handler\Proxy;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -138,8 +139,10 @@ class IndexController extends Controller
     public function TagWiseProduct($tag)
     {
         $products = Product::where('status',1)->where('product_tags_en',$tag)->where('product_tags_idn',$tag)->orderBy('id','DESC')->get();
+        $categories = Category::orderBy('category_name_en', 'ASC')->get();
 
-        return view('frontend.tags.tags_view', compact('products'));
+
+        return view('frontend.tags.tags_view', compact('products', 'categories',));
 
     } //end method
 
