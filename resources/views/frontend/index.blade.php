@@ -423,11 +423,13 @@
                             @endphp
 
                             <div>
+
                               @if ($product->discount_price == NULL)
                                 <div class="tag new"><span>new</span></div>
                               @else
                                 <div class="tag hot"><span>{{ round($discount) }}%</span></div>
                               @endif
+                              
                             </div>
                             
                           </div>
