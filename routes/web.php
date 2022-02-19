@@ -155,6 +155,10 @@ Route::get('/language/indo', [LanguageController::class, 'Indo'])->name('indo.la
 Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
 
 
+// Product Tags Page
+Route::get('/product/tag/{tag}', [IndexController::class, 'TagWiseProduct']);
+
+
 
 
 

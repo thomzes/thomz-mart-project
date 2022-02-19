@@ -15,13 +15,17 @@
       <div class="tag-list">
 
         @if (session()->get('language') == 'indo')
+
             @foreach($tags_idn as $tag)
-            <a class="item active" title="Phone" href="category.html">{{ str_replace(',',' ', $tag->product_tags_idn) }}</a>
+            <a class="item active" title="Phone" href="{{ url('product/tag/'.$tag->product_tags_idn) }}">{{ str_replace(',',    ' ', $tag->product_tags_idn) }}</a>
             @endforeach
+
         @else
+        
             @foreach($tags_en as $tag)
-            <a class="item active" title="Phone" href="category.html">{{ str_replace(',',' ', $tag->product_tags_en) }}</a>
+            <a class="item active" title="Phone" href="{{ url('product/tag/'.$tag->product_tags_en) }}">{{ str_replace(',',' ', $tag->product_tags_en) }}</a>
             @endforeach
+
         @endif
 
       </div>
