@@ -33,13 +33,14 @@
               @foreach ($subcategories as $subcategory)
                 <div class="col-sm-12 col-md-3">
 
-                  <h2 class="title">
+                  
+                  <a href="{{ url('subcategory/product/'.$subcategory->id.'/'.$subcategory->subcategory_slug_en) }}"><h2 class="title">
                     @if (session()->get('language') == 'indo')
                       {{ $subcategory->subcategory_name_idn }}
                     @else
                       {{ $subcategory->subcategory_name_en }}
                     @endif
-                  </h2>
+                  </h2></a>
 
                   {{-- GET SUBSUBCATEGORY TABLE DATA --}}
                   @php

@@ -159,6 +159,10 @@ Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDeta
 Route::get('/product/tag/{tag}', [IndexController::class, 'TagWiseProduct']);
 
 
+// SubCategory Tags Data
+Route::get('subcategory/product/{subcat_id}/{slug}', [IndexController::class, 'SubCateWiseProduct']);
+
+
 
 
 
