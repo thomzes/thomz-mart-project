@@ -5,6 +5,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="description" content="">
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 <meta name="author" content="">
 <meta name="keywords" content="MediaCenter, Template, eCommerce">
 <meta name="robots" content="all">
@@ -183,6 +185,65 @@
    </div>
  </div>
 {{-- END ADD TO CART PRODUCT MODAL --}}
+
+
+
+<script type="text/javascript">
+   $.ajaxSetup({
+      headers:{'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+      }
+   })
+
+   // Start Product View With Modal
+   function productView(id)
+   {
+      // alert(id)
+
+      $.ajax({
+         type: 'GET',
+         url: '/product/view/modal/' + id,
+         dataType: 'json',
+         success:function(data){
+
+         }
+
+      })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   }
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
  
 </body>
 </html>
