@@ -316,7 +316,7 @@
 
         <div class="single-product-gallery-thumbs gallery-thumbs">  
             <div id="owl-single-product-thumbnails">
-                
+
                 @foreach($multiImg as $img) 
                 <div class="item">
                     <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="1" href="#slide{{ $img->id }}">
@@ -412,6 +412,51 @@
 
 								</div><!-- /.row -->
 							</div><!-- /.price-container -->
+
+
+
+							{{-- ========================================= ADD PRODUCT COLOR AND SIZE ============================================ --}}
+
+							<div class="row">
+									
+
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label class="info-title control-label">Choose Color</label>
+										<select class="form-control unicase-form-control selectpicker" style="display: none;">
+											<option selected disabled >--Choose Color--</option>
+											@foreach($product_color_en as $color)
+											<option value="{{ $color }}">{{ $color }}</option>
+											@endforeach
+										</select>
+									</div>
+								</div>
+								{{-- end col-sm-6 --}}
+
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label class="info-title control-label">Choose Size</label>
+										<select class="form-control unicase-form-control selectpicker" style="display: none;">
+											<option selected disabled >--Choose Size--</option>
+											@foreach($product_size_en as $size)
+											<option value="{{ $size }}">{{ $size }}</option>
+											@endforeach
+										</select>
+									</div>
+								</div>
+								{{-- end col-sm-6 --}}
+
+							</div><!-- /.row -->
+
+							{{-- ============================================== END PRODUCT COLOR AND SIZE ===================================== --}}
+
+
+
+
+
+
+
+
 
 							<div class="quantity-container info-container">
 								<div class="row">
