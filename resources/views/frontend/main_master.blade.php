@@ -118,8 +118,8 @@
        <div class="row">
           <div class="col-md-4">
 
-            <div class="card" style="width: 18rem;">
-               <img src=" " class="card-img-top" alt="..." style="height: 200px; width: 180px;" id="pimage">
+            <div class="card mx-2" style="width: 18rem;">
+               <img src=" " class="card-img-top" alt="..." style="height: 200px; width: 200px; margin-left: 5px;" id="pimage">
                
              </div>
              
@@ -151,7 +151,7 @@
 
          <div class="col-md-4">
 
-            <div class="form-group">
+            <div class="form-group" style="margin-right: 5px;" >
                <label for="exampleFormControlSelect1">Choose Color</label>
                <select class="form-control" id="exampleFormControlSelect1" name="color">
                  
@@ -159,14 +159,14 @@
              </div>
              {{-- end form-group --}}
 
-             <div class="form-group" id="sizeArea">
+             <div class="form-group" id="sizeArea" style="margin-right: 5px;">
                <label for="exampleFormControlSelect1">Choose Size</label>
                <select class="form-control" id="exampleFormControlSelect1" name="size">
                </select>
              </div>
              {{-- end form-group --}}
 
-             <div class="form-group">
+             <div class="form-group" style="margin-right: 5px;">
                <label for="exampleFormControlInput1">Quantity</label>
                <input type="number" class="form-control" id="exampleFormControlInput1" value="1" min="1">
              </div>
