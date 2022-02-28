@@ -152,27 +152,29 @@
          <div class="col-md-4">
 
             <div class="form-group" style="margin-right: 5px;" >
-               <label for="exampleFormControlSelect1">Choose Color</label>
-               <select class="form-control" id="exampleFormControlSelect1" name="color">
+               <label for="color">Choose Color</label>
+               <select class="form-control" id="color" name="color">
                  
                </select>
              </div>
              {{-- end form-group --}}
 
              <div class="form-group" id="sizeArea" style="margin-right: 5px;">
-               <label for="exampleFormControlSelect1">Choose Size</label>
-               <select class="form-control" id="exampleFormControlSelect1" name="size">
+               <label for="size">Choose Size</label>
+               <select class="form-control" id="size" name="size">
                </select>
              </div>
              {{-- end form-group --}}
 
              <div class="form-group" style="margin-right: 5px;">
-               <label for="exampleFormControlInput1">Quantity</label>
-               <input type="number" class="form-control" id="exampleFormControlInput1" value="1" min="1">
+               <label for="qty">Quantity</label>
+               <input type="number" class="form-control" id="qty" value="1" min="1">
              </div>
              {{-- end form-group --}}
 
-             <button type="submit" class="btn btn-primary mb-2">Add to cart</button>
+
+             <input type="hidden" name="" id="product_id">
+             <button type="submit" class="btn btn-primary mb-2" onclick="addToCart()">Add to cart</button>
              
          </div>
          {{-- end col-md-4 --}}
@@ -194,6 +196,9 @@
       }
    })
 
+
+
+
    // Start Product View With Modal
    function productView(id)
    {
@@ -213,6 +218,12 @@
             $('#pcategory').text(data.product.category.category_name_en);
             $('#pbrand').text(data.product.brand.brand_name_en);
 
+
+            $('#product_id').val(id);
+            $('#qty').val(1);
+
+
+
             // Product Price
             if(data.product.discount_price == null) {
                $('#pprice').text('');
@@ -225,6 +236,10 @@
 
             } //end product price
 
+
+
+
+
             // Stock Option
             if(data.product.product_qty > 0 ) {
                $('#available').text('Available');
@@ -235,6 +250,10 @@
                $('#stockout').text('Stockout');
 
             } //end stock option
+
+
+
+
 
             // Color 
             $('select[name="color"]').empty();
@@ -262,14 +281,36 @@
       })
 
 
+   }
+   // End Product View With Modal
 
 
 
 
 
+   // Start Add to Cart Product with package bumbummen99
 
+   function addToCart()
+   {
+      var product_name = $('#pname').text();
+      var id = $('#product_id').val();
+      var color = $('#color option:selected').text();
+      var size = $('#size option:selected').text();
+      var quantity = $('#qty').val();
 
+      $.ajax({
+         type: "POST",
+         dataType: "json",
+         data:{
+            product_name:product_name, color:color, size:size, quantity:quantity
+         },
+         url: "/cart/data/store/" + id,
+         success:function(data){
+            console.log(data)
+         }
+      })
 
+      
 
 
 
@@ -278,6 +319,11 @@
 
 
 
+
+
+
+
+   // End Add to Cart Product with package bumbummen99
 
 
 
