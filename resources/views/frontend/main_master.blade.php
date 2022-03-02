@@ -69,6 +69,9 @@
 <script src="{{ asset('frontend/assets/js/wow.min.js') }}"></script> 
 <script src="{{ asset('frontend/assets/js/scripts.js') }}"></script>
 
+{{-- CDN Sweetalert2 --}}
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 {{-- Toastr JS --}}
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script>
@@ -308,7 +311,35 @@
          success:function(data){
             $('#closeModal').click();
 
-            console.log(data)
+            // console.log(data)
+
+            // Start message
+            const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  icon: 'success',
+                  showConfirmButton: false,
+                  timer: 3000
+                  })
+            if ($.isEmptyObject(data.error)) {
+               Toast.fire({
+                  type:'success',
+                  title: data.success
+               })
+               
+            } else {
+               Toast.fire({
+                  type:'error',
+                  title: data.error
+               })
+               
+            }
+
+            // End message
+
+
+
+
          }
       })
 
