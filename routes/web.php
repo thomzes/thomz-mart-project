@@ -13,6 +13,7 @@ use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\SubSubCategoryController;
+use App\Http\Controllers\Frontend\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -169,4 +170,11 @@ Route::get('subsubcategory/product/{subsubcat_id}/{slug}', [IndexController::cla
 
 // Product View Modal With Ajax
 Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
+
+
+// Add To Cart Store Data
+Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
+
+
+
 

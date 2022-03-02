@@ -107,7 +107,7 @@
             </strong>
 
          </h5>
-         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModal">
            <span aria-hidden="true">&times;</span>
          </button>
        </div>
@@ -306,6 +306,8 @@
          },
          url: "/cart/data/store/" + id,
          success:function(data){
+            $('#closeModal').click();
+
             console.log(data)
          }
       })
