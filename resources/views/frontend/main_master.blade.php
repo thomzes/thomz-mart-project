@@ -337,26 +337,31 @@
 
             // End message
 
-
-
-
          }
       })
 
-      
-
-
-
-
    }
 
-
-
-
-
-
-
    // End Add to Cart Product with package bumbummen99
+
+
+</script>
+
+
+<script type="text/javascript">
+   function miniCart()
+   {
+      $.ajax({
+         type: 'GET',
+         url: '/product/mini/cart',
+         dataType: 'json',
+         success:function(response){
+            console.log(response)
+
+         }
+      })
+   }
+
 
 
 
