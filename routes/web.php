@@ -14,6 +14,8 @@ use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\SubSubCategoryController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\User\WishlistController;
+use App\Models\Wishlist;
 
 /*
 |--------------------------------------------------------------------------
@@ -188,6 +190,8 @@ Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMi
 Route::post('/add-to-wishlist/{product_id}', [CartController::class, 'AddToWishlist']);
 
 
+// Wishlist Page
+Route::get('/wishlist', [WishlistController::class, 'ViewWishlist'])->name('wishlist');
 
 
 
