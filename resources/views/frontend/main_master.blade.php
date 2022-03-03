@@ -437,13 +437,36 @@ function miniCartRemove(rowId)
 }
 
 
-
-
-
 // End Mini Cart Remove 
 
+</script>
 
 
+
+
+{{-- Start Add Wishlist Page --}}
+<script type="text/javascript">
+
+   function addToWishlist(product_id)
+   {
+      $.ajax({
+         type: 'POST',
+         dataType: 'json',
+         url: '/add-to-wishlist/' + product_id,
+
+         success:function(data){
+            
+         }
+
+
+
+
+
+      })
+
+
+
+   }
 
 
 
@@ -458,6 +481,7 @@ function miniCartRemove(rowId)
 
 
 
+{{-- End Add Wishlist Page --}}
 
 
 

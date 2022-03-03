@@ -76,6 +76,15 @@ class CartController extends Controller
     } //end method
 
 
+    // Add To Wishlist
+    public function AddToWishlist(Request $request, $product_id)
+    {
+        
+
+
+    }
+
+
 
 
 
