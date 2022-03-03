@@ -455,7 +455,32 @@ function miniCartRemove(rowId)
          url: '/add-to-wishlist/' + product_id,
 
          success:function(data){
-            
+
+             // Start Message
+            const Toast = swal.mixin({
+               toast: true,
+               position: 'top-end',
+               
+               showConfirmButton: false,
+               timer: 3000
+            })
+            if ($.isEmptyObject(data.error)) {
+               Toast.fire({
+                  type: 'success',
+                  icon: 'success',
+                  title: data.success
+
+               })
+            } else {
+               Toast.fire({
+                  type: 'error',
+                  icon: 'error',
+                  title: data.error
+
+               })
+            }
+            // End Message
+
          }
 
 

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use Carbon\Carbon;
 use App\Models\Product;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CartController extends Controller
@@ -79,10 +82,27 @@ class CartController extends Controller
     // Add To Wishlist
     public function AddToWishlist(Request $request, $product_id)
     {
-        
+        if(Auth::check()) {
+
+            $exists = Wishlist::where('user_id', Auth::id())->where('product_id', $product_id)->first();
+
+            Wishlist::insert([
+                'user_id' => Auth::id(),
+                'product_id' => $product_id,
+                'created_at' => Carbon::now(),
+            ]);
+
+            return response()->json(['success' => 'Successfully Added On Your Wishlist!']);
+
+        }else{
+
+            return response()->json(['error' => 'Please Login Your Account First!']);
+
+        }
 
 
-    }
+
+    } //end method
 
 
 
