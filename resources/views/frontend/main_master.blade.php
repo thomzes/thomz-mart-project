@@ -177,7 +177,7 @@
 
 
              <input type="hidden" name="" id="product_id">
-             <button type="submit" class="btn btn-primary mb-2" onclick="addToCart()">Add to cart</button>
+             <button type="submit" class="btn btn-primary" style="margin-bottom: 10px" onclick="addToCart()" id="btnCart">Add to cart</button>
              
          </div>
          {{-- end col-md-4 --}}
@@ -225,6 +225,8 @@
             $('#product_id').val(id);
             $('#qty').val(1);
 
+            
+
 
 
             // Product Price
@@ -247,10 +249,13 @@
             if(data.product.product_qty > 0 ) {
                $('#available').text('Available');
                $('#stockout').text('');
+               $('#btnCart').show();
+
 
             }else {
                $('#available').text('');
                $('#stockout').text('Stockout');
+               $('#btnCart').hide();
 
             } //end stock option
 
@@ -359,7 +364,7 @@
          dataType: 'json',
          success:function(response){
 
-            $('span[id="cartSubTotal"]').text(response.cartTotal);
+            $('span[id="cartSubTotal"]').text(response.cartTotal); //ERROR MINI CART
             $('#cartQty').text(response.cartQty);
 
             // console.log(response)
@@ -375,7 +380,8 @@
                                  <h3 class="name"><a href="index.php?page-detail">${value.name}</a></h3>
                                  <div class="price">${value.price} * ${value.qty} </div>
                                  </div>
-                                 <div class="col-xs-1 action"> <a href="#"><i class="fa fa-trash"></i></a> </div>
+                                 <div class="col-xs-1 action">
+                                 <button type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)"><i class="fa fa-trash"></i> </button> </div>
                               </div>
                            </div>
                            <!-- /.cart-item -->
@@ -389,6 +395,56 @@
       })
    }
    miniCart();
+
+
+// Mini Cart Remove Start
+function miniCartRemove(rowId)
+{
+   $.ajax({
+      type: 'GET',
+      url: '/minicart/product-remove/' + rowId,
+      dataType: 'json', 
+      success:function(data){
+         miniCart();
+
+         // Start Message
+         const Toast = swal.mixin({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 3000
+         })
+         if ($.isEmptyObject(data.error)) {
+            Toast.fire({
+               type: 'success',
+               title: data.success
+
+            })
+         } else {
+            Toast.fire({
+               type: 'error',
+               title: data.error
+
+            })
+         }
+         // End Message
+
+
+
+      }
+   });
+}
+
+
+
+
+
+// End Mini Cart Remove 
+
+
+
+
 
 
 </script>

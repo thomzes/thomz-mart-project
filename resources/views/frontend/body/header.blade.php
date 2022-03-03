@@ -161,7 +161,8 @@
                 <div class="basket-item-count"><span class="count" id="cartQty"></span></div>
                 <div class="total-price-basket"> <span class="lbl">cart -</span> 
                   <span class="total-price"> <span class="sign">$</span>
-                  <span class="value" id="cartSubTotal"> </span> </span> 
+                  <span class="value" id="cartSubTotal"> </span> </span>
+                  {{-- ERROR MINI CART --}}
                 </div>
               </div>
               </a>
@@ -182,6 +183,7 @@
                   <div class="clearfix cart-total">
                     <div class="pull-right"> <span class="text">Sub Total :</span>
                       <span class='price' id="cartSubTotal"> </span></div>
+                      {{-- ERROR MINICART --}}
                     <div class="clearfix"></div>
                     <a href="checkout.html" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a> </div>
                   <!-- /.cart-total--> 

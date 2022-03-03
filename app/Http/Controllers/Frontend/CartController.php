@@ -13,7 +13,7 @@ class CartController extends Controller
     {
         $product = Product::findOrFail($id);
 
-        if($product->discount_pice == NULL) {
+        if($product->discount_price == null) {
             Cart::add([
                 'id' => $id, 
                 'name' => $request->product_name, 
@@ -34,7 +34,7 @@ class CartController extends Controller
                 'id' => $id, 
                 'name' => $request->product_name, 
                 'qty' => $request->quantity, 
-                'price' => $product->discount_price, 
+                'price' => $product->discount_price,
                 'weight' => 1, 
                 'options' => [
                     'image' => $product->product_thumbnail,
@@ -63,6 +63,15 @@ class CartController extends Controller
             'cartTotal' => round((int)$cartTotal),
 
         ));
+
+    } //end method
+
+
+    public function RemoveMiniCart($rowId)
+    {
+        Cart::remove($rowId);
+        return response()->json(['success' => 'Product Remove From Cart!']);
+
 
     } //end method
 
