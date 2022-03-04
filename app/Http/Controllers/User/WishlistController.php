@@ -13,9 +13,6 @@ class WishlistController extends Controller
     {
         return view('frontend.wishlist.view_wishlist');
 
-
-
-
     } //end method
 
 
@@ -25,9 +22,17 @@ class WishlistController extends Controller
 
         return response()->json($wishlist);
 
-
-
     } // end method
+
+    public function RemoveWIshlistProduct($id)
+    {
+        Wishlist::where('user_id', Auth::id())->where('id', $id)->delete();
+
+        return response()->json(['success' => 'Successfully Remove The Product!']);
+
+
+
+    }
 
 
 

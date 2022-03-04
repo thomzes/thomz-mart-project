@@ -398,96 +398,96 @@
 
 
 // Mini Cart Remove Start
-function miniCartRemove(rowId)
-{
-   $.ajax({
-      type: 'GET',
-      url: '/minicart/product-remove/' + rowId,
-      dataType: 'json', 
-      success:function(data){
-         miniCart();
-
-         // Start Message
-         const Toast = swal.mixin({
-            toast: true,
-            position: 'top-end',
-            icon: 'success',
-            showConfirmButton: false,
-            timer: 3000
-         })
-         if ($.isEmptyObject(data.error)) {
-            Toast.fire({
-               type: 'success',
-               title: data.success
-
-            })
-         } else {
-            Toast.fire({
-               type: 'error',
-               title: data.error
-
-            })
-         }
-         // End Message
-
-
-
-      }
-   });
-}
-
-
-// End Mini Cart Remove 
-
-</script>
-
-
-
-
-{{-- Start Add Wishlist Page --}}
-<script type="text/javascript">
-
-   function addToWishlist(product_id)
+   function miniCartRemove(rowId)
    {
       $.ajax({
-         type: 'POST',
-         dataType: 'json',
-         url: '/add-to-wishlist/' + product_id,
-
+         type: 'GET',
+         url: '/minicart/product-remove/' + rowId,
+         dataType: 'json', 
          success:function(data){
+            miniCart();
 
-             // Start Message
+            // Start Message
             const Toast = swal.mixin({
                toast: true,
                position: 'top-end',
-               
+               icon: 'success',
                showConfirmButton: false,
                timer: 3000
             })
             if ($.isEmptyObject(data.error)) {
                Toast.fire({
                   type: 'success',
-                  icon: 'success',
                   title: data.success
 
                })
             } else {
                Toast.fire({
                   type: 'error',
-                  icon: 'error',
                   title: data.error
 
                })
             }
             // End Message
 
+
+
          }
-
-      })
-
+      });
    }
 
-</script>
+
+   // End Mini Cart Remove 
+
+   </script>
+
+
+
+
+{{-- Start Add Wishlist Page --}}
+   <script type="text/javascript">
+
+      function addToWishlist(product_id)
+      {
+         $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: '/add-to-wishlist/' + product_id,
+
+            success:function(data){
+
+               // Start Message
+               const Toast = swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  
+                  showConfirmButton: false,
+                  timer: 3000
+               })
+               if ($.isEmptyObject(data.error)) {
+                  Toast.fire({
+                     type: 'success',
+                     icon: 'success',
+                     title: data.success
+
+                  })
+               } else {
+                  Toast.fire({
+                     type: 'error',
+                     icon: 'error',
+                     title: data.error
+
+                  })
+               }
+               // End Message
+
+            }
+
+         })
+
+      }
+
+   </script>
 
 {{-- End Add Wishlist Page --}}
 
@@ -522,7 +522,7 @@ function miniCartRemove(rowId)
 
                               </td>
                               <td class="col-md-1 close-btn">
-                                 <a href="#" class=""><i class="fa fa-times"></i></a>
+                                 <button type="submit" id="${value.id}" class="" onclick="wishlistRemove(this.id)"><i class="fa fa-times"></i></button>
                               </td>
                            </tr>`
                });
@@ -533,6 +533,50 @@ function miniCartRemove(rowId)
          })
       }
       wishlist();
+
+
+   // Wishlist Remove Start
+   function wishlistRemove(id)
+   {
+      $.ajax({
+         type: 'GET',
+         url: '/wishlist-remove/' + id,
+         dataType: 'json', 
+         success:function(data){
+            wishlist();
+
+            // Start Message
+            const Toast = swal.mixin({
+               toast: true,
+               position: 'top-end',
+               showConfirmButton: false,
+               timer: 3000
+            })
+            if ($.isEmptyObject(data.error)) {
+               Toast.fire({
+                  type: 'success',
+                  icon: 'success',
+                  title: data.success
+
+               })
+            } else {
+               Toast.fire({
+                  type: 'error',
+                  icon: 'error',
+                  title: data.error
+
+               })
+            }
+            // End Message
+
+
+
+         }
+      });
+   }
+
+
+   // End Wishlist Remove 
 
    </script>
 
