@@ -630,7 +630,7 @@
                               </td>
 
                               <td class="col-md-1 close-btn">
-                                 <button type="submit" id="${value.id}" class="" onclick="wishlistRemove(this.id)"><i class="fa fa-times"></i></button>
+                                 <button type="submit" id="${value.rowId}" class="" onclick="cartRemove(this.id)"><i class="fa fa-times"></i></button>
                               </td>
                            </tr>`
                });
@@ -644,14 +644,16 @@
 
 
    // MyCart Remove Start
-   function wishlistRemove(id)
+   function cartRemove(id)
    {
       $.ajax({
          type: 'GET',
-         url: '/user/wishlist-remove/' + id,
+         url: '/user/cart-remove/' + id,
          dataType: 'json', 
          success:function(data){
-            wishlist();
+            cart();
+            miniCart();
+            
 
             // Start Message
             const Toast = swal.mixin({

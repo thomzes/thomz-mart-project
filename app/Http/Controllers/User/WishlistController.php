@@ -24,7 +24,7 @@ class WishlistController extends Controller
 
     } // end method
 
-    public function RemoveWIshlistProduct($id)
+    public function RemoveWishlistProduct($id)
     {
         Wishlist::where('user_id', Auth::id())->where('id', $id)->delete();
 
