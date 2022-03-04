@@ -580,22 +580,95 @@
 
    </script>
 
-
-
-
-
-
-
-
-
-
-
-
 {{-- End load Wishlist Data --}}
 
 
 
 
+
+{{-- Start Load MyCart Data --}}
+   <script type="text/javascript">
+      function cart()
+      {
+         $.ajax({
+            type: 'GET',
+            url: '/user/get-cart-product',
+            dataType: 'json',
+            success:function(response){
+
+               var rows = ""
+
+               $.each(response.carts, function(key,value){
+                  rows += `<tr>
+                              <td class="col-md-2"><img src="/${value.options.image}" alt="imga"></td>
+                              <td class="col-md-7">
+                                 <div class="product-name"><a href="#">${value.name}</a></div>
+                                 <div class="price">
+
+                                 ${value.price}
+                                    
+                                 </div>
+                              </td>
+                              <td class="col-md-1 close-btn">
+                                 <button type="submit" id="${value.id}" class="" onclick="wishlistRemove(this.id)"><i class="fa fa-times"></i></button>
+                              </td>
+                           </tr>`
+               });
+
+               $('#cartPage').html(rows);
+
+            }
+         })
+      }
+      cart();
+
+
+   // MyCart Remove Start
+   function wishlistRemove(id)
+   {
+      $.ajax({
+         type: 'GET',
+         url: '/user/wishlist-remove/' + id,
+         dataType: 'json', 
+         success:function(data){
+            wishlist();
+
+            // Start Message
+            const Toast = swal.mixin({
+               toast: true,
+               position: 'top-end',
+               showConfirmButton: false,
+               timer: 3000
+            })
+            if ($.isEmptyObject(data.error)) {
+               Toast.fire({
+                  type: 'success',
+                  icon: 'success',
+                  title: data.success
+
+               })
+            } else {
+               Toast.fire({
+                  type: 'error',
+                  icon: 'error',
+                  title: data.error
+
+               })
+            }
+            // End Message
+
+
+
+         }
+      });
+   }
+
+
+   // End MyCart Remove 
+
+   </script>
+
+{{-- End load MyCart Data --}}
 
 
 

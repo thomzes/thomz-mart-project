@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\SubSubCategoryController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\User\WishlistController;
 use App\Models\Wishlist;
 
@@ -190,6 +191,8 @@ Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMi
 Route::post('/add-to-wishlist/{product_id}', [CartController::class, 'AddToWishlist']);
 
 
+
+// Wishlist Page
 Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' => 'User'], function(){
     
     // Wishlist Page
@@ -198,9 +201,22 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
     Route::get('/get-wishlist-product', [WishlistController::class, 'GetWishlistProduct']);
     
     Route::get('/wishlist-remove/{id}', [WishlistController::class, 'RemoveWIshlistProduct']);
-
     
+    
+    // Mycart Page
+    Route::get('/mycart', [CartPageController::class, 'MyCart'])->name('mycart');
+    
+    Route::get('/get-cart-product', [CartPageController::class, 'GetCartProduct']);
+
+
+
+
+
+
 });
+
+
+
 
 
 

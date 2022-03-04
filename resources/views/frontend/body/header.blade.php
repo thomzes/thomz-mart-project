@@ -23,7 +23,7 @@
                 @endif
                 </a></li>
                 
-              <li><a href="#"><i class="icon fa fa-shopping-cart"></i>
+              <li><a href="{{ route('mycart') }}"><i class="icon fa fa-shopping-cart"></i>
                 @if (session()->get('language') == 'indo')
                     Keranjang Saya
                 @else
