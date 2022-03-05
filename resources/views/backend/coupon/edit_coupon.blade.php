@@ -52,6 +52,7 @@
                             </div>
 
                            <div class="text-xs-right">
+                                <a href="{{ route('manage-coupon') }}" class="btn btn-rounded btn-warning mb-5">Back</a>
                                <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Update">
                             </div>
                        </form>
