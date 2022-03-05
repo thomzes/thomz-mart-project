@@ -30,6 +30,7 @@ class CartPageController extends Controller
 
     } //end method
 
+
     public function RemoveCartProduct($rowId)
     {
         Cart::remove($rowId);
@@ -38,6 +39,26 @@ class CartPageController extends Controller
     } //end method
 
 
+    // Cart Increment
+    public function CartIncrement($rowId)
+    {
+        $row = Cart::get($rowId);
+        Cart::update($rowId, $row->qty + 1);
+
+        return response()->json('increment');
+
+    } //end method
+    
+    
+    // Cart Decrement
+    public function CartDecrement($rowId)
+    {
+        $row = Cart::get($rowId);
+        Cart::update($rowId, $row->qty - 1);
+
+        return response()->json('decrement');
+
+    } //end method
 
 
 

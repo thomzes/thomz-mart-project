@@ -38,6 +38,7 @@
                         <th class="cart-total last-item">Remove</th>
                     </tr>
                 </thead><!-- /thead -->
+                
                                 <tbody id="cartPage">
                                     
                                 </tbody>

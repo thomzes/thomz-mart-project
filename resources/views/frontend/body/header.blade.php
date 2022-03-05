@@ -155,13 +155,13 @@
 
             <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
             
-            <div class="dropdown dropdown-cart"> <a href="#" class="dropdown-toggle lnk-cart" data-toggle="dropdown">
+            <div class="dropdown dropdown-cart"> <a href="#" class="dropdown-toggle lnk-cart" data-toggle="dropdown" style="width:190px;">
               <div class="items-cart-inner">
                 <div class="basket"> <i class="glyphicon glyphicon-shopping-cart"></i> </div>
                 <div class="basket-item-count"><span class="count" id="cartQty"></span></div>
                 <div class="total-price-basket"> <span class="lbl">cart -</span> 
                   <span class="total-price"> <span class="sign">$</span>
-                  <span class="value" id="cartSubTotal"> </span> </span>
+                  <span class="value" id="cartSubTotal"></span> </span>
                   {{-- ERROR MINI CART --}}
                 </div>
               </div>
