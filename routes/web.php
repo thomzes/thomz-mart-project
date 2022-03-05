@@ -151,6 +151,9 @@ Route::prefix('slider')->group(function() {
 Route::prefix('coupons')->group(function() {
     Route::get('/view', [CouponController::class, 'CouponView'])->name('manage-coupon');
     Route::post('/store', [CouponController::class, 'CouponStore'])->name('coupon.store');
+    Route::get('/edit/{id}', [CouponController::class, 'CouponEdit'])->name('coupon.edit');
+    Route::post('/update/{id}', [CouponController::class, 'CouponUpdate'])->name('coupon.update');
+    Route::get('/delete/{id}', [CouponController::class, 'CouponDelete'])->name('coupon.delete');
 
 
 

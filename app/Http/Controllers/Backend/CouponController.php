@@ -47,6 +47,52 @@ class CouponController extends Controller
     } //end method
 
 
+    public function CouponEdit($id)
+    {
+        $coupons = Coupon::findOrFail($id);
+        return view('backend.coupon.edit_coupon', compact('coupons'));
+
+    } //end method
+
+
+    public function CouponUpdate(Request $request, $id)
+    {
+        Coupon::findOrFail($id)->update(
+            [
+                'coupon_name' => strtoupper($request->coupon_name),
+                'coupon_discount' => $request->coupon_discount,
+                'coupon_validity' => $request->coupon_validity,
+                'created_at' => Carbon::now(),
+
+            ]);
+    
+            // Notification Toastr
+            $notification = array(
+                'message' => 'Coupon Updated Successfully!',
+                'alert-type' => 'info'
+
+            );
+    
+            return redirect()->route('manage-coupon')->with($notification);
+
+    } //end method
+
+    public function CouponDelete($id)
+    {
+        Coupon::findOrFail($id)->delete();
+
+        // Notification Toastr
+        $notification = array(
+            'message' => 'Coupon Deleted Successfully!',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->back()->with($notification);
+
+
+    }
+
+
 
 
 
