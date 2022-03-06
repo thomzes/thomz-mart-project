@@ -364,7 +364,7 @@
          dataType: 'json',
          success:function(response){
 
-            $('span[id="cartSubTotal"]').text(response.cartSubTotal); //ERROR MINI CART SUBTOTAL
+            $('span[id="cartSubTotal"]').text(response.cartTotal); //ERROR MINI CART SUBTOTAL
             $('#cartQty').text(response.cartQty);
 
             // console.log(response)
