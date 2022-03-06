@@ -785,17 +785,35 @@
 
          })
 
-
-
       }
-   
-   
-   
-   
-   
-   
-   
-   
+
+      
+
+      // ================================ START Coupon Calculation =========================== \\
+
+         function couponCalculated()
+         {
+            $.ajax({
+               type: 'GET',
+               url: "{{ url('/coupon-calculation') }}",
+               dataType: "json",
+               success:function(data){
+                  
+
+
+               }
+
+            })
+
+
+
+         }
+      
+      
+      
+      
+      
+      // ================================ START Coupon Calculation ============================ \\
    
    
    </script>
