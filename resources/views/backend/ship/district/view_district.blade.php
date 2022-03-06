@@ -19,17 +19,19 @@
                     <thead>
                         <tr>
                             <th class="col-lg-1">Division Name</th>
+                            <th class="col-lg-1">District Name</th>
                             <th class="col-lg-3">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($divisions as $item)
+                        @foreach ($district as $item)
                             <tr>
-                                <td>{{ $item->division_name }}</td>
-
-                                <td width="40%">
-                                    <a href="{{ route('division.edit',$item->id) }}" class="btn btn-info" title="Edit Coupon"><i class="fa fa-pencil"></i></a>
-                                    <a href="{{ route('division.delete',$item->id) }}" class="btn btn-danger" id="delete" title="Delete Coupon"><i class="fa fa-trash"></i></a>
+                                <td>{{ $item->division->division_name }}</td>
+                                <td>{{ $item->district_name }}</td>
+                                
+                                <td width="30%">
+                                    <a href="{{ route('district.edit',$item->id) }}" class="btn btn-info" title="Edit District"><i class="fa fa-pencil"></i></a>
+                                    <a href="{{ route('district.delete',$item->id) }}" class="btn btn-danger" id="delete" title="Delete District"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
                         @endforeach
@@ -44,23 +46,41 @@
         </div>
         <!-- /.col -->
 
-        {{-- Add Division Page --}}
+        {{-- Add District Page --}}
         <div class="col-lg-4">
 
             <div class="box">
                <div class="box-header with-border">
-                 <h3 class="box-title">Add Division</h3>
+                 <h3 class="box-title">Add District</h3>
                </div>
                <!-- /.box-header -->
                <div class="box-body">
                    <div class="table-responsive">
-                    <form method="post" action="{{ route('division.store') }}">
+                    <form method="post" action="{{ route('district.store') }}">
                         @csrf
-                            <div class="form-group">
-                                <h5>Division Name<span class="text-danger">*</span></h5>
+
+                        <div class="form-group">
+                            <h5>Division Select <span class="text-danger">*</span></h5>
                                 <div class="controls">
-                                    <input type="text" name="division_name" class="form-control">
-                                    @error('division_name')
+                                    <select name="division_id" class="form-control"  >
+                                        <option value="" selected="" disabled="">Select Division</option>
+                                        @foreach($division as $div)
+
+                                            <option value="{{ $div->id }}">{{ $div->division_name }}</option>
+
+                                        @endforeach
+                                    </select>
+                                    @error('division_id') 
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror 
+                             </div>
+                        </div>
+
+                            <div class="form-group">
+                                <h5>District Name<span class="text-danger">*</span></h5>
+                                <div class="controls">
+                                    <input type="text" name="district_name" class="form-control">
+                                    @error('district_name')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>

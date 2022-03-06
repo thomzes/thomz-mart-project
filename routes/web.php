@@ -18,6 +18,7 @@ use App\Http\Controllers\Backend\SubSubCategoryController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\User\WishlistController;
+use App\Models\ShipDivision;
 use App\Models\Wishlist;
 
 /*
@@ -163,12 +164,27 @@ Route::prefix('coupons')->group(function() {
 
 // Admin Shipping All Route
 Route::prefix('shipping')->group(function() {
+
+    // Ship Division
     Route::get('/division/view', [ShippingAreaController::class, 'DivisionView'])->name('manage-division');
     Route::post('/division/store', [ShippingAreaController::class, 'DivisionStore'])->name('division.store');
-    Route::get('/edit/{id}', [CouponController::class, 'CouponEdit'])->name('coupon.edit');
-    Route::post('/update/{id}', [CouponController::class, 'CouponUpdate'])->name('coupon.update');
-    Route::get('/delete/{id}', [CouponController::class, 'CouponDelete'])->name('coupon.delete');
+    Route::get('/division/edit/{id}', [ShippingAreaController::class, 'DivisionEdit'])->name('division.edit');
+    Route::post('/division/update/{id}', [ShippingAreaController::class, 'DivisionUpdate'])->name('division.update');
+    Route::get('/division/delete/{id}', [ShippingAreaController::class, 'DivisionDelete'])->name('division.delete');
+    
+    
+    // Ship District
+    Route::get('/district/view', [ShippingAreaController::class, 'DistrictView'])->name('manage-district');
+    Route::post('/district/store', [ShippingAreaController::class, 'DistrictStore'])->name('district.store');
+    Route::get('/district/edit/{id}', [ShippingAreaController::class, 'DistrictEdit'])->name('district.edit');
+    Route::post('/district/update/{id}', [ShippingAreaController::class, 'DistrictUpdate'])->name('district.update');
+    Route::get('/district/delete/{id}', [ShippingAreaController::class, 'DistrictDelete'])->name('district.delete');
 });
+
+
+
+
+
 
 
 
