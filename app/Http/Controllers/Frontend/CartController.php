@@ -108,10 +108,18 @@ class CartController extends Controller
 
         }
 
+    } //end method
+
+
+
+    // ============== COUPON APPLY METHOD ============== \\
+    public function CouponApply(Request $request)
+    {
+        
+
 
 
     } //end method
-
 
 
 

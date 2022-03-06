@@ -738,18 +738,46 @@
 
    // ========================== End Cart Decrement =========================== //
 
-
-
-
-
-
-
-
    </script>
 
 {{-- End load MyCart Data --}}
 
 
+{{-- =========================== START Coupon Apple Button =============================  --}}
+
+   <script type="text/javascript">
+   
+      function applyCoupon()
+      {
+         var coupon_name = $('#coupon_name').val();
+
+         $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            data: {coupon_name:coupon_name},
+            url: "{{ url('/coupon-apply') }}",
+            success:function(data){
+
+            }
+         })
+
+
+
+
+
+
+      }
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </script>
 
 
 
@@ -757,6 +785,29 @@
 
 
 
+{{-- =========================== END Coupon Apple Button =============================  --}}
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>
