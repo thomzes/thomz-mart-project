@@ -61,7 +61,6 @@ class CartController extends Controller
         $carts = Cart::content();
         $cartQty = Cart::count();
         $cartTotal = Cart::total();
-        $cartSubTotal = Cart::subtotal();
 
         return response()->json(array(
             'carts' => $carts,
