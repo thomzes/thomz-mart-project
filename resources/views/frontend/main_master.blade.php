@@ -757,6 +757,10 @@
             data: {coupon_name:coupon_name},
             url: "{{ url('/coupon-apply') }}",
             success:function(data){
+               couponCalculation();
+               $('#couponField').hide();
+               $('#coupon_name').val('');
+
                // Start Message
             const Toast = swal.mixin({
                toast: true,
@@ -787,11 +791,15 @@
 
       }
 
+   // -- =========================== END Coupon Apply Button =============================  --}}
+
       
+
+
 
       // ================================ START Coupon Calculation =========================== \\
 
-         function couponCalculated()
+         function couponCalculation()
          {
             $.ajax({
                type: 'GET',
@@ -807,7 +815,7 @@
                                        Subtotal<span class="inner-left-md">$ ${data.total}</span>
                                     </div>
                                     <div class="cart-grand-total">
-                                       Grand Total<span class="inner-left-md">$ ${data.total}/span>
+                                       Grand Total<span class="inner-left-md">$ ${data.total}</span>
                                     </div>
                               </th>
                            </tr> `
@@ -822,7 +830,7 @@
                                     </div>
                                     <div class="cart-sub-total">
                                        Coupon Name :<span class="inner-left-md"> ${data.coupon_name}</span>
-                                       <button type="submit"><i class="fa fa-times"> </i></button>
+                                       <button type="submit" onclick="couponRemove()"><i class="fa fa-times"></i>  </button>
                                     </div>
                                     <div class="cart-sub-total">
                                        Discount Amount :<span class="inner-left-md">$ ${data.discount_amount}</span>
@@ -836,30 +844,64 @@
                      
                   }
 
-
                }
 
             });
 
          }
-         couponCalculated();
+         couponCalculation();
       
-      
-      
-      
-      
-      // ================================ START Coupon Calculation ============================ \\
+  
+      // ================================ END Coupon Calculation ============================ \\
    
    
    </script>
 
 
+{{-- ================================= START Coupon Remove ==================================== --}}
+
+   <script type="text/javascript">
+
+function couponRemove(){
+        $.ajax({
+            type:'GET',
+            url: "{{ url('/coupon-remove') }}",
+            dataType: 'json',
+            success:function(data){
+               couponCalculation();
+               $('#couponField').show();
 
 
 
+                 // Start Message 
+                const Toast = Swal.mixin({
+                      toast: true,
+                      position: 'top-end',
+                      
+                      showConfirmButton: false,
+                      timer: 3000
+                    })
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type: 'success',
+                        icon: 'success',
+                        title: data.success
+                    })
+                }else{
+                    Toast.fire({
+                        type: 'error',
+                        icon: 'error',
+                        title: data.error
+                    })
+                }
+                // End Message 
+            }
+        });
+     }
+      
+   
+   </script>
 
-
-{{-- =========================== END Coupon Apply Button =============================  --}}
  
 
 
@@ -877,6 +919,7 @@
 
 
 
+{{-- ================================= START Coupon Remove ==================================== --}}
 
 
 

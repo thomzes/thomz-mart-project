@@ -66,7 +66,7 @@
                             
                         @else
                             
-                        <table class="table">
+                        <table class="table" id="couponField">
                             <thead>
                                 <tr>
                                     <th>
