@@ -659,10 +659,12 @@
          url: '/user/cart-remove/' + id,
          dataType: 'json', 
          success:function(data){
+            couponCalculation();
             cart();
             miniCart();
+            $('#couponField').show();
+            $('#coupon_name').val('');
             
-
             // Start Message
             const Toast = swal.mixin({
                toast: true,
