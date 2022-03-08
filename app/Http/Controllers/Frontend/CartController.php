@@ -197,7 +197,7 @@ class CartController extends Controller
                 $cartQty = Cart::count();
                 $cartTotal = Cart::total();
 
-                return view('frontend.checkout.chekout_view', compact('carts', 'cartQrt', 'cartTotal'));
+                return view('frontend.checkout.checkout_view', compact('carts', 'cartQty', 'cartTotal'));
 
             }else{
                 // Notification Toastr
