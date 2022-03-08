@@ -17,6 +17,7 @@ use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Backend\SubSubCategoryController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\CartPageController;
+use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\WishlistController;
 use App\Models\ShipDivision;
 use App\Models\Wishlist;
@@ -287,8 +288,12 @@ Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
 
 
 // Checkout All Routes
-
 Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
+
+// Shipping Routes AJAX
+Route::get('/shipping/district/ajax/{division_id}', [CheckoutController::class, 'GetDistrict']);
+Route::get('/shipping/state/ajax/{district_id}', [CheckoutController::class, 'GetState']);
+
 
 
 

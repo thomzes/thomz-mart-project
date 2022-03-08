@@ -8,6 +8,9 @@ use App\Models\Product;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\ShipDistrict;
+use App\Models\ShipDivision;
+use App\Models\ShipState;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -197,7 +200,12 @@ class CartController extends Controller
                 $cartQty = Cart::count();
                 $cartTotal = Cart::total();
 
-                return view('frontend.checkout.checkout_view', compact('carts', 'cartQty', 'cartTotal'));
+                $divisions = ShipDivision::orderBy('division_name', 'ASC')->get();
+                $district = ShipDistrict::orderBy('district_name', 'ASC')->get();
+                $state = ShipState::orderBy('state_name', 'ASC')->get();
+
+
+                return view('frontend.checkout.checkout_view', compact('carts', 'cartQty', 'cartTotal', 'divisions', 'district', 'state'));
 
             }else{
                 // Notification Toastr
@@ -224,6 +232,8 @@ class CartController extends Controller
         }
 
     } //end method
+
+
 
 
 
