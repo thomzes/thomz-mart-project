@@ -23,4 +23,26 @@ class CheckoutController extends Controller
         return json_encode($state);
 
     } //end method
+
+
+
+    public function CheckoutStore(Request $request)
+    {
+        
+
+
+
+    } //end method
+
+
+
+
+
+
+
+
+
+
+
+
 }

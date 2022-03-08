@@ -48,7 +48,8 @@
                                             <div class="col-md-6 col-sm-6 already-registered-login">
                                                 <h4 class="checkout-subtitle"><b>Shipping Address</b></h4>
 
-                                                    <form class="register-form" role="form">
+<form class="register-form" action="{{ route('checkout.store') }}" method="POST">
+@csrf
 
                                                         <div class="form-group">
                                                             <label class="info-title" for="exampleInputEmail1">Shipping Name <span>*</span></label>
@@ -70,8 +71,8 @@
                                                             <input type="text" name="post_code" class="form-control unicase-form-control text-input" id="exampleInputEmail1" placeholder="Post Code" required>
                                                         </div>
 
-                                                </div>	
-                                                <!-- guest-login -->
+                                            </div>	
+                                            <!-- guest-login -->
                                 
                                             <!-- already-registered-login -->
                                             <div class="col-md-6 col-sm-6 already-registered-login">
@@ -123,11 +124,10 @@
                                                     </div>
                                                 </div>
 
-
-                                                        <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button>
-
-                                                    </form>
-                                                    {{-- end form --}}
+                                                <div class="form-group">
+                                                    <label class="info-title" for="exampleInputEmail1">Notes <span>*</span></label>
+                                                        <textarea class="form-control" cols="30" rows="5" placeholder="Notes" name="notes"></textarea>
+                                                </div>  
 
                                             </div>	
                                              <!-- already-registered-login -->		
@@ -212,6 +212,56 @@
                             </div> 
                             <!-- checkout-progress-sidebar -->				
                         </div>
+
+
+                        <div class="col-md-4">
+                            <!-- checkout-progress-sidebar -->
+                        <div class="checkout-progress-sidebar ">
+                            <div class="panel-group">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="unicase-checkout-title">Select Payment Method</h4>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="">Stripe</label>
+                                            <input type="radio" name="payment_method" value="stripe">
+                                            <img src="{{ asset('frontend/assets/images/payments/4.png') }}" alt="">
+
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label for="">Card</label>
+                                            <input type="radio" name="payment_method" value="card">
+                                            <img src="{{ asset('frontend/assets/images/payments/3.png') }}" alt="">
+
+    
+                                        </div>
+                                    
+                                        <div class="col-md-4">
+                                            <label for="">Cash</label>
+                                            <input type="radio" name="payment_method" value="cash">
+                                            <img src="{{ asset('frontend/assets/images/payments/2.png') }}" alt="">
+
+
+                                        </div>
+                                    </div>
+
+                                    <hr>
+
+                                    <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Payment Step</button>
+                                    
+                                </div>
+                            </div>
+                        </div> 
+                        <!-- checkout-progress-sidebar -->				
+                    </div>
+
+</form>
+{{-- end form --}}
+
+
                 </div><!-- /.row -->
             </div><!-- /.checkout-box -->
 

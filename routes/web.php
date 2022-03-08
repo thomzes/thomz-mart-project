@@ -295,6 +295,10 @@ Route::get('/shipping/district/ajax/{division_id}', [CheckoutController::class, 
 Route::get('/shipping/state/ajax/{district_id}', [CheckoutController::class, 'GetState']);
 
 
+// 
+Route::post('/checkout/store', [CheckoutController::class, 'CheckoutStore'])->name('checkout.store');
+
+
 
 
 
