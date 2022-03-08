@@ -189,10 +189,10 @@
                                                     ( {{ session()->get('coupon')['coupon_discount'] }}% )
                                                     <hr>
 
-                                                    <strong>Coupon discount: </strong> {{ session()->get('coupon')['coupon_discount'] }}%
+                                                    <strong>Coupon discount: </strong> ${{ session()->get('coupon')['discount_amount'] }}
                                                     <hr>
 
-                                                    <strong>Grand Total: </strong> {{ session()->get('coupon')['total_amount'] }}
+                                                    <strong>Grand Total: </strong> ${{ session()->get('coupon')['total_amount'] }}
                                                     <hr>
 
                                                     @else
