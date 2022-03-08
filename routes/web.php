@@ -286,6 +286,16 @@ Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
 
 
 
+// Checkout All Routes
+
+Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
+
+
+
+
+
+
+
 
 
 
