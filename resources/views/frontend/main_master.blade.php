@@ -766,8 +766,11 @@
             data: {coupon_name:coupon_name},
             url: "{{ url('/coupon-apply') }}",
             success:function(data){
+               if (data.validity == true) {
+                  $('#couponField').hide();
+                  
+               }
                couponCalculation();
-               $('#couponField').hide();
                $('#coupon_name').val('');
 
                // Start Message
