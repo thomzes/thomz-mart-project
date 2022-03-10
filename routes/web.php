@@ -18,6 +18,7 @@ use App\Http\Controllers\Backend\SubSubCategoryController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\User\CartPageController;
+use App\Http\Controllers\User\CashController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\WishlistController;
@@ -263,6 +264,8 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
     Route::get('/wishlist-remove/{id}', [WishlistController::class, 'RemoveWishlistProduct']);
     
     Route::post('/stripe/order', [StripeController::class, 'StripeOrder'])->name('stripe.order');
+    
+    Route::post('/cash/order', [CashController::class, 'CashOrder'])->name('cash.order');
 
     Route::get('/my/orders', [AllUserController::class, 'MyOrders'])->name('my.orders');
     
