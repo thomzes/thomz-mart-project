@@ -27,7 +27,8 @@ class AllUserController extends Controller
                         ->where('id', $order_id)
                         ->where('user_id', Auth::id())
                         ->first();
-        $orderItem = OrderItem::where('order_id', $order_id)
+        $orderItem = OrderItem::with('product')
+                                ->where('order_id', $order_id)
                                 ->orderBy('id', 'DESC')
                                 ->get();
 

@@ -65,10 +65,9 @@
                                 </td>
 
                                 <td class="col-md-2">
-                                    <span class="badge badge-pill badge-warning" style="background: #418DB9">
-                                        <label for="">{{ $order->status }}</label>
-                                    
-                                    </span>
+                                    <label for="">
+                                        <span class="badge badge-pill badge-warning" style="background: #418DB9">{{ $order->status }}</span>
+                                    </label>
                                 </td>
 
                                 <td class="col-md-1">
