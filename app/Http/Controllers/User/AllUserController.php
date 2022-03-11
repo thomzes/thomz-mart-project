@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\User;
 
 use App\Models\Order;
+use Barryvdh\DomPDF\Facade as PDF;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\OrderItem;
 use Illuminate\Support\Facades\Auth;
 
 class AllUserController extends Controller
@@ -49,7 +50,16 @@ class AllUserController extends Controller
                                 ->orderBy('id', 'DESC')
                                 ->get();
 
-        return view('frontend.user.order.order_invoice', compact('order', 'orderItem'));
+        // return view('frontend.user.order.order_invoice', compact('order', 'orderItem'));
+
+
+        $pdf = PDF::loadView('frontend.user.order.order_invoice',compact('order','orderItem'))
+            ->setPaper('a4')
+            ->setOptions([
+            'tempDir' => public_path(),
+            'chroot' => public_path(),
+    ]);
+    return $pdf->download('invoice.pdf');
 
 
 
