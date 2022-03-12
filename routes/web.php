@@ -202,10 +202,7 @@ Route::prefix('shipping')->group(function() {
 // Admin Orders All Route
 Route::prefix('orders')->group(function() {
     Route::get('/pending/orders', [OrderController::class, 'PendingOrders'])->name('pending-orders');
-    Route::post('/store', [CouponController::class, 'CouponStore'])->name('coupon.store');
-    Route::get('/edit/{id}', [CouponController::class, 'CouponEdit'])->name('coupon.edit');
-    Route::post('/update/{id}', [CouponController::class, 'CouponUpdate'])->name('coupon.update');
-    Route::get('/delete/{id}', [CouponController::class, 'CouponDelete'])->name('coupon.delete');
+    Route::get('/pending/orders/details/{order_id}', [OrderController::class, 'PendingOrdersDetails'])->name('pending.order.details');
 });
 
 

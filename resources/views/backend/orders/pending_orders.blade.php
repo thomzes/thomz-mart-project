@@ -31,11 +31,11 @@
                             <tr>
                                 <td>{{ $item->order_date }}</td>
                                 <td>#{{ $item->invoice_no }}</td>
-                                <td>{{ $item->amount }}</td>
+                                <td>${{ $item->amount }}</td>
                                 <td>{{ $item->payment_method }}</td>
                                 <td><span class="badge badge-pill badge-primary">{{ $item->status }}</span></td>
                                 <td width="30%">
-                                    <a href="{{ route('coupon.edit',$item->id) }}" class="btn btn-info" title="Edit Coupon"><i class="fa fa-pencil"></i></a>
+                                    <a href="{{ route('pending.order.details',$item->id) }}" class="btn btn-info" title="Edit Coupon"><i class="fa fa-eye"></i></a>
                                     <a href="{{ route('coupon.delete',$item->id) }}" class="btn btn-danger" id="delete" title="Delete Coupon"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
@@ -51,7 +51,7 @@
         </div>
         <!-- /.col -->
 
-        
+      </div>
       <!-- /.row -->
     </section>
     <!-- /.content -->
