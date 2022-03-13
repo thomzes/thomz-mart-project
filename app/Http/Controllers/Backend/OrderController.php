@@ -116,6 +116,25 @@ class OrderController extends Controller
 
 
 
+    public function PendingToConfirm($order_id)
+    {
+        Order::findOrFail($order_id)->update([
+            'status' => 'Confirmed'
+        ]);
+
+        // Notification Toastr
+        $notification = array(
+            'message' => 'Order Confirm Successfully!',
+            'alert-type' => 'info'
+
+        );
+
+        return redirect()->route('pending-orders')->with($notification);
+
+    } //end method
+
+
+
 
 
 
