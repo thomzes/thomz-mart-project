@@ -298,7 +298,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
     
     Route::get('/return/order/list', [AllUserController::class, 'ReturnOrderList'])->name('return.order.list');
     
-    Route::get('/cancel/order', [AllUserController::class, 'CancelOrders'])->name('cancel.order');
+    Route::get('/cancel/order', [AllUserController::class, 'CancelOrders'])->name('cancel.orders');
 
     
 });
