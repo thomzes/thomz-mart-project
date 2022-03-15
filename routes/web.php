@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Backend\SubSubCategoryController;
 use App\Http\Controllers\Frontend\CartController;
@@ -219,6 +220,28 @@ Route::prefix('orders')->group(function() {
 
     Route::get('/invoice/download/{order_id}', [OrderController::class, 'AdminInvoiceDownload'])->name('invoice.download');
 });
+
+
+
+
+// Admin Reports All Route
+Route::prefix('reports')->group(function() {
+    Route::get('/view', [ReportController::class, 'ReportView'])->name('all-reports');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
