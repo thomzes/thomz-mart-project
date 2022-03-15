@@ -234,6 +234,13 @@ Route::prefix('reports')->group(function() {
 
 
 
+// Admin All Users All Route
+Route::prefix('alluser')->group(function() {
+    Route::get('/view', [AdminProfileController::class, 'AllUsers'])->name('all-users');
+});
+
+
+
 
 
 

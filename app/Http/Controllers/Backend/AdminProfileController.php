@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\User;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -14,13 +15,15 @@ class AdminProfileController extends Controller
     {
         $adminData = Admin::find(1);
         return view('admin.admin_profile_view', compact('adminData'));
-    }
+
+    } //end method
 
     public function AdminProfileEdit()
     {
         $editData = Admin::find(1);
         return view('admin.admin_profile_edit', compact('editData'));
-    }
+
+    } //end method
 
     public function AdminProfileStore(Request $request)
     {
@@ -45,12 +48,13 @@ class AdminProfileController extends Controller
 
         return redirect()->route('admin.profile')->with($notification);
 
-    }
+    } //end method
 
     public function AdminChangePassword()
     {
         return view('admin.admin_change_password');
-    }
+
+    } //end method
 
     public function AdminUpdatePassword(Request $request)
     {
@@ -81,7 +85,33 @@ class AdminProfileController extends Controller
             return redirect()->back()->with($notification);
         }
 
-    }
+    } //end method
+
+
+    public function AllUsers()
+    {
+        $users = User::latest()->get();
+
+        return view('backend.user.all_user', compact('users'));
+
+
+
+
+
+    } //end method
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
