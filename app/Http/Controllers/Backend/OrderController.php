@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\Order;
+use Barryvdh\DomPDF\Facade as PDF;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -197,6 +198,27 @@ class OrderController extends Controller
           return redirect()->route('shipped-orders')->with($notification);
   
     } // end method
+
+
+
+
+    // PDF
+    public function AdminInvoiceDownload($order_id){
+
+		$order = Order::with('division','district','state','user')
+                        ->where('id',$order_id)->first();
+    	$orderItem = OrderItem::with('product')
+                                ->where('order_id',$order_id)
+                                ->orderBy('id','DESC')->get();
+
+		$pdf = PDF::loadView('backend.orders.order_invoice',compact('order','orderItem'))
+                    ->setPaper('a4')->setOptions([
+				'tempDir' => public_path(),
+				'chroot' => public_path(),
+		]);
+		return $pdf->download('invoice.pdf');
+
+	} // end method 
 
 
 
