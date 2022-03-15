@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\User;
 
+use Carbon\Carbon;
 use App\Models\Order;
-use Barryvdh\DomPDF\Facade as PDF;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -61,10 +62,26 @@ class AllUserController extends Controller
     ]);
     return $pdf->download('invoice.pdf');
 
-
-
-
     } //end method  
+
+
+    public function ReturnOrder(Request $request,$order_id)
+    {
+        Order::findOrFail($order_id)->update([
+            'return_date' => Carbon::now()->format('d F Y'),
+            'return_reason' => $request->return_reason,
+        ]);
+
+        // Notification Toastr
+        $notification = array(
+            'message' => 'Return Request Send Successfully!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('my.orders')->with($notification);
+
+
+    } //end method
 
 
 

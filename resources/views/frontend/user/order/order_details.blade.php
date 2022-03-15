@@ -207,17 +207,21 @@
             {{-- end order item row --}}
 
 
-            @if($order->status !== "delivered")
+            @if($order->status !== "Delivered")
             
             @else
-
+            <form action="{{ route('return-order', $order->id) }}" method="POST">
+                @csrf
             <div class="form-group">
                 <label for="label">Order Return Reason: </label>
-                <textarea name="return_reason" id="" class="form-control" cols="30" rows="05">Return Reason</textarea>
-
+                <textarea name="return_reason" id="" class="form-control" cols="30" rows="05" placeholder="Return Reason.."></textarea>
             </div>
+            <button type="submit" class="btn btn-danger">Submit</button>
+
+            </form>
 
             @endif
+            <br><br>
 
 
         </div> 
