@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
+use DateTime;
+use App\Models\Order;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ReportController extends Controller
 {
@@ -11,10 +13,46 @@ class ReportController extends Controller
     {
         return view('backend.report.report_view');
 
+    } //end method
+
+
+    public function ReportByDate(Request $request)
+    {
+        // return $request->all(); FOR CHECK DATE FORMATING
+
+        $date = new DateTime($request->date);
+        $formatDate = $date->format('d F Y');
+        // return $formatDate;
+        $orders = Order::where('order_date',$formatDate)
+                        ->latest()
+                        ->get();
+
+        return view('backend.report.report_view_search',compact('orders'));
+
+    } //end method
 
 
 
+    public function ReportByMonth(Request $request)
+    {
+        $orders = Order::where('order_month',$request->month)
+                        ->where('order_year',$request->year_name)
+                        ->latest()
+                        ->get();
 
+        return view('backend.report.report_view_search',compact('orders'));
+
+    } //end method
+
+
+
+    public function ReportByYear(Request $request)
+    {
+        $orders = Order::where('order_year',$request->year)
+                        ->latest()
+                        ->get();
+
+        return view('backend.report.report_view_search',compact('orders'));
 
     } //end method
 
