@@ -245,6 +245,7 @@ Route::prefix('alluser')->group(function() {
 // Admin Site Setting All Route
 Route::prefix('setting')->group(function() {
     Route::get('/site', [SiteSettingController::class, 'SiteSetting'])->name('site-setting');
+    Route::post('/site/update', [SiteSettingController::class, 'SiteSettingUpdate'])->name('update.sitesetting');
 });
 
 
