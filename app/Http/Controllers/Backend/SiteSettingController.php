@@ -87,6 +87,31 @@ class SiteSettingController extends Controller
 
 
 
+    public function SeoSettingUpdate(Request $request)
+    {
+        $seo_id = $request->id;
+
+        Seo::findOrFail($seo_id)->update(
+            [
+                'meta_title' => $request->meta_title,
+                'meta_author' => $request->meta_author,
+                'meta_keyword' => $request->meta_keyword,
+                'meta_description' => $request->meta_description,
+                'google_analytics' => $request->google_analytics,
+            ]);
+    
+            // Notification Toastr
+            $notification = array(
+                'message' => 'Seo Updated Successfully!',
+                'alert-type' => 'success'
+            );
+    
+            return redirect()->back()->with($notification);
+
+    } //end method
+
+
+    } 
 
 
 
@@ -94,4 +119,7 @@ class SiteSettingController extends Controller
 
 
 
-}
+
+
+
+
