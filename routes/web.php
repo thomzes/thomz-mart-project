@@ -24,6 +24,7 @@ use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\User\CashController;
 use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\User\ReviewController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\WishlistController;
 use App\Models\ShipDivision;
@@ -389,6 +390,11 @@ Route::get('/shipping/state/ajax/{district_id}', [CheckoutController::class, 'Ge
 
 // 
 Route::post('/checkout/store', [CheckoutController::class, 'CheckoutStore'])->name('checkout.store');
+
+
+// Product Review Routes
+Route::post('/review/store', [ReviewController::class, 'ReviewStore'])->name('review.store');
+
 
 
 
