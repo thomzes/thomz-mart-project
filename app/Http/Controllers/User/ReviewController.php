@@ -62,6 +62,31 @@ class ReviewController extends Controller
     } //end method
 
 
+    public function PublishReview()
+    {
+        $review = Review::where('status', 1)->orderBy('id', 'DESC')
+                                            ->get();
+        
+        return view('backend.review.publish_review', compact('review'));
+
+    } //end method
+
+
+    public function DeleteReview($id)
+    {
+        Review::findOrFail($id)->delete();
+
+    	$notification = array(
+            'message' => 'Review Delete Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+
+
+    } //end method
+
+
 
 
 
