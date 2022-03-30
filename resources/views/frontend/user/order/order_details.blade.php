@@ -224,7 +224,7 @@
                 <label for="label">Order Return Reason: </label>
                 <textarea name="return_reason" id="" class="form-control" cols="30" rows="05" placeholder="Return Reason.."></textarea>
             </div>
-            <button type="submit" class="btn btn-danger">Submit</button>
+            <button type="submit" class="btn btn-danger">Order Return</button>
 
             </form>
 
