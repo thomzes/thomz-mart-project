@@ -44,8 +44,8 @@
                                     @endif
                                     
                                     
-                                <td width="30%">
-                                    <a href="{{ route('return.approve', $item->id) }}" class="btn btn-danger">Approve</a>
+                                <td width="25%">
+                                    <span class="badge badge-success">Return Success </span>
                                 </td>
                             </tr>
                         @endforeach
