@@ -39,6 +39,29 @@ class ReviewController extends Controller
     } //end method
 
 
+    public function PendingReview()
+    {
+        $review = Review::where('status', 0)->orderBy('id', 'DESC')
+                                            ->get();
+
+        return view('backend.review.pending_review', compact('review'));
+
+    } //end method
+
+    public function ReviewApprove($id)
+    {
+        Review::where('id', $id)->update(['status' => 1]);
+
+        $notification = array(
+            'message' => 'Review Approved Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+
+    } //end method
+
+
 
 
 

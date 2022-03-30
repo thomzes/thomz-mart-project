@@ -262,6 +262,11 @@ Route::prefix('return')->group(function() {
 
 
 
+// Admin Return Order Routes
+Route::prefix('review')->group(function() {
+    Route::get('/pending', [ReviewController::class, 'PendingReview'])->name('pending.review');
+    Route::get('/admin/approve/{id}', [ReviewController::class, 'ReviewApprove'])->name('review.approve');
+});
 
 
 
