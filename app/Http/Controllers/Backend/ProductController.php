@@ -296,6 +296,17 @@ class ProductController extends Controller
 
     } //end method
 
+
+
+    // Product Stock Method
+    public function ProductStock()
+    {
+        $products = Product::latest()->get();
+
+        return view('backend.product.product_stock',compact('products'));
+
+    } //end method
+
     
 
 
