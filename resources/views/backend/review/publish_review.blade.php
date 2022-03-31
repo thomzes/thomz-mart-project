@@ -39,7 +39,7 @@
                                         <span class="badge badge-pill badge-primary">Pending</span></td>
                                         
                                     @elseif ($item->status == 1)
-                                        <span class="badge badge-pill badge-success">Success</span></td>
+                                        <span class="badge badge-pill badge-success">Publish</span></td>
 
                                     @endif
                                     
