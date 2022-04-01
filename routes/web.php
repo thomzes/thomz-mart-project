@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\AdminProfileController;
+use App\Http\Controllers\Backend\AdminUserController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\ReportController;
@@ -279,6 +280,10 @@ Route::prefix('stock')->group(function() {
 
 
 
+// Admin User Role Routes
+Route::prefix('adminuserrole')->group(function() {
+    Route::get('/all', [AdminUserController::class, 'AllAdminRole'])->name('all.admin.user');
+});
 
 
 
