@@ -283,6 +283,8 @@ Route::prefix('stock')->group(function() {
 // Admin User Role Routes
 Route::prefix('adminuserrole')->group(function() {
     Route::get('/all', [AdminUserController::class, 'AllAdminRole'])->name('all.admin.user');
+    Route::get('/add', [AdminUserController::class, 'AddAdminRole'])->name('add.admin');
+    Route::post('/store', [AdminUserController::class, 'StoreAdminRole'])->name('admin.user.store');
 });
 
 
