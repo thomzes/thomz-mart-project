@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Facades\Image;
 
 class AdminProfileController extends Controller
 {
@@ -35,11 +36,13 @@ class AdminProfileController extends Controller
         $data->email = $request->email;
 
         if ($request->file('profile_photo_path')) {
-            $file = $request->file('profile_photo_path');
             @unlink(public_path('upload/admin_images/'.$data->profile_photo_path));
-            $filename = date('YmdHi').$file->getClientOriginalName();
-            $file->move(public_path('upload/admin_images'),$filename);
-            $data->profile_photo_path = $filename;
+            $image = $request->file('profile_photo_path');
+            $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            Image::make($image)->resize(225,225)->save('upload/admin_images/'.$name_gen);
+            $save_url = 'upload/admin_images/'.$name_gen;
+            $data->profile_photo_path = $save_url;
+
         }
         $data->save();
 
