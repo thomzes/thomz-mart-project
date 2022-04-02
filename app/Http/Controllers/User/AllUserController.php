@@ -105,6 +105,16 @@ class AllUserController extends Controller
 
         return view('frontend.user.order.cancel_order_view', compact('orders'));
 
+    } //end method
+
+
+
+    // ============= ORDER TRACKING ============== \\
+
+    public function OrderTracking()
+    {
+        
+
 
 
 

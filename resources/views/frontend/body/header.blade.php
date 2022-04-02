@@ -13,7 +13,8 @@
                 @else
                     My Account
                 @endif
-                </a></li>
+                </a>
+              </li>
 
               <li><a href="{{ route('wishlist') }}"><i class="icon fa fa-heart"></i>
                 @if (session()->get('language') == 'indo')
@@ -21,7 +22,8 @@
                 @else
                     Wishlist
                 @endif
-                </a></li>
+                </a>
+              </li>
                 
               <li><a href="{{ route('mycart') }}"><i class="icon fa fa-shopping-cart"></i>
                 @if (session()->get('language') == 'indo')
@@ -29,7 +31,8 @@
                 @else
                     My Cart
                 @endif
-                </a></li>
+                </a>
+              </li>
 
               <li><a href="{{ route('checkout') }}"><i class="icon fa fa-check"></i>
                 @if (session()->get('language') == 'indo')
@@ -37,9 +40,19 @@
                 @else
                     Checkout
                 @endif
-                </a></li>
+                </a>
+              </li>
+              
+              <li><a href="" type="button" data-toggle="modal" data-target="#ordertracking"><i class="icon fa fa-check"></i>
+                @if (session()->get('language') == 'indo')
+                    Pelacakan Pesanan
+                @else
+                    Order Tracking
+                @endif
+                </a>
+              </li>
+              
               <li>
-
                 @auth
                 <a href="{{ route('login') }}"><i class="icon fa fa-user"></i>
                   @if (session()->get('language') == 'indo')
@@ -47,7 +60,8 @@
                   @else
                     User Profile
                 @endif
-                </a></li>
+                </a>
+              </li>
 
                 @else
 
@@ -57,7 +71,8 @@
                   @else
                     Login/Register
                 @endif
-                </a></li>
+                </a>
+              </li>
                 @endauth
 
             </ul>
@@ -344,5 +359,44 @@
     </div>
     <!-- /.header-nav --> 
     <!-- ============================================== NAVBAR : END ============================================== --> 
+
+
+
+
+
+
+
+    <!-- Modal Order Tracking -->
+
+      <div class="modal fade" id="ordertracking" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Track Your Order</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form action="{{ route('order.tracking') }}" method="post">
+                @csrf
+                <div class="modal-body">
+
+                  <label for="">Invoice Code</label>
+                  <input type="text" name="code" required class="form-control" placeholder="Your Order Invoice Number...">
+                  
+                </div>
+
+                <button class="btn btn-danger" type="submit" style="margin-left: 17px;">Track Now</button>
+
+              </form>
+
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
     
   </header>

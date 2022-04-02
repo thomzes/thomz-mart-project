@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\Admin;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 
 class BrandController extends Controller
