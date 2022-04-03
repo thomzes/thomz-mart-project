@@ -203,8 +203,20 @@ class IndexController extends Controller
 
         ));
 
+    } //end method
 
 
+    // Product Search
+    public function ProductSearch(Request $request)
+    {
+        $item = $request->search;
+
+        // echo "$item";
+
+        $products = Product::where('product_name_en', 'LIKE', "%$item%")->get();
+        $categories = Category::orderBy('category_name_en', 'ASC')->get();
+
+        return view('frontend.product.search', compact('products', 'categories'));
 
     } //end method
 
