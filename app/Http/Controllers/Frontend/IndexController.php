@@ -11,6 +11,7 @@ use App\Models\MultiImg;
 use App\Models\Product;
 use App\Models\Slider;
 use App\Models\SubCategory;
+use App\Models\SubSubCategory;
 use GuzzleHttp\Handler\Proxy;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -167,9 +168,9 @@ class IndexController extends Controller
     {
         $products = Product::where('status',1)->where('subcategory_id', $subcat_id)->orderBy('id','DESC')->paginate(6);
         $categories = Category::orderBy('category_name_en', 'ASC')->get();
+        $breadsubcat = SubCategory::with(['category'])->where('id', $subcat_id)->get();
 
-
-        return view('frontend.product.subcategory_view', compact('products', 'categories',));
+        return view('frontend.product.subcategory_view', compact('products', 'categories', 'breadsubcat'));
 
     } //end method
 
@@ -178,9 +179,10 @@ class IndexController extends Controller
     {
         $products = Product::where('status',1)->where('subsubcategory_id', $subsubcat_id)->orderBy('id','DESC')->paginate(6);
         $categories = Category::orderBy('category_name_en', 'ASC')->get();
+        $breadsubsubcat = SubSubCategory::with(['category', 'subcategory'])->where('id', $subsubcat_id)->get();
 
 
-        return view('frontend.product.sub_subcategory_view', compact('products', 'categories',));
+        return view('frontend.product.sub_subcategory_view', compact('products', 'categories', 'breadsubsubcat'));
 
     } //end method
 
