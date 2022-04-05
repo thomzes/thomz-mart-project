@@ -21,7 +21,7 @@ class CreateNewUser implements CreatesNewUsers
     public function create(array $input)
     {
         Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
+            'regname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'phone' => ['required', 'string', 'max:255'],
             'password' => $this->passwordRules(),
@@ -29,10 +29,20 @@ class CreateNewUser implements CreatesNewUsers
         ])->validate();
 
         return User::create([
-            'name' => $input['name'],
+            'name' => $input['regname'],
             'email' => $input['email'],
             'phone' => $input['phone'],
             'password' => Hash::make($input['password']),
         ]);
+
+        // Notification Toastr
+        $notification = array(
+            'message' => 'Create New User Successfully!',
+            'alert-type' => 'success'
+        );
+
+
+        return redirect()->route('dashboard')->with($notification);
+
     }
 }
