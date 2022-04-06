@@ -427,7 +427,8 @@ Route::post('/review/store', [ReviewController::class, 'ReviewStore'])->name('re
 Route::post('/search', [IndexController::class, 'ProductSearch'])->name('product.search');
 
 
-
+// Advance Search Product
+Route::post('search-product', [IndexController::class, 'SearchProduct']);
 
 
 

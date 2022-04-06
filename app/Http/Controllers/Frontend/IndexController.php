@@ -226,5 +226,20 @@ class IndexController extends Controller
 
 
 
+    // Advance Search Options
+    public function SearchProduct(Request $request)
+    {
+        return $request;
+
+
+
+
+    } //end merhod
+
+
+
+
+
+
 
 }
