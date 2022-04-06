@@ -521,7 +521,9 @@ jQuery(document).ready(function () {
                     "meta[name='csrf-token']"
                 );
             },
-            success: function (result) {},
+            success: function (result) {
+                $("#searchProducts").html(result);
+            },
         }); // end ajax
     }); //end on
 });
