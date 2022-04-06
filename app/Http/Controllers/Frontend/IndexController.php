@@ -211,6 +211,8 @@ class IndexController extends Controller
     // Product Search
     public function ProductSearch(Request $request)
     {
+        $request->validate(["search" => "required"]);
+
         $item = $request->search;
 
         // echo "$item";

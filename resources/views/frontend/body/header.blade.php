@@ -160,7 +160,7 @@
                       </li>
                     </ul>
                     <input class="search-field" name="search" placeholder="Search here..." />
-                    <a class="search-button" href="#" ></a> 
+                    <button class="search-button" type="submit"></button> 
                   </div>
               </form>
             </div>
