@@ -29,22 +29,22 @@
         @csrf
 
 		<div class="form-group" style="margin-top: 15px;">
-		    <label class="info-title" for="name">Username <span>*</span></label>
-		    <input type="text" class="form-control unicase-form-control text-input" id="name" name="name" placeholder="Username..." required>
-			@error('name')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-            @enderror
+		    <label class="info-title" for="email">Email <span>*</span></label>
+		    <input type="email" class="form-control unicase-form-control text-input" id="email" name="email" placeholder="Email..." required>
+				@error('email')
+				<span class="invalid-feedback" role="alert">
+					<strong>{{ $message }}</strong>
+				</span>
+				@enderror
 		</div>
 	  	<div class="form-group">
 		    <label class="info-title" for="password">Password <span>*</span></label>
 		    <input type="password" class="form-control unicase-form-control text-input" id="password" placeholder="Password..." name="password" required>
-			@error('password')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-            @enderror
+				@error('password')
+				<span class="invalid-feedback" role="alert">
+					<strong>{{ $message }}</strong>
+				</span>
+				@enderror
 		</div>
 		<div class="radio outer-xs">
 		  	<label>
@@ -66,49 +66,49 @@
         @csrf
         
         <div class="form-group">
-            <label class="info-title" for="regname">Username <span>*</span></label>
-            <input type="text" class="form-control unicase-form-control text-input" id="regname" name="regname" placeholder="Username..." >
-            @error('regname')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-            @enderror
+            <label class="info-title" for="name">Username <span>*</span></label>
+            <input type="text" class="form-control unicase-form-control text-input" id="name" name="name" placeholder="Username..." >
+				@error('regname')
+				<span class="invalid-feedback" role="alert">
+					<strong>{{ $message }}</strong>
+				</span>
+				@enderror
         </div>
 		<div class="form-group">
-	    	<label class="info-title" for="email">Email Address <span>*</span></label>
-	    	<input type="email" class="form-control unicase-form-control text-input" id="email" name="email" placeholder="Email Address..." >
-            @error('email')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-            @enderror
+	    	<label class="info-title" for="regemail">Email Address <span>*</span></label>
+	    	<input type="email" class="form-control unicase-form-control text-input" id="regemail" name="email" placeholder="Email Address..." >
+				@error('regemail')
+				<span class="invalid-feedback" role="alert">
+					<strong>{{ $message }}</strong>
+				</span>
+				@enderror
 	  	</div>
         <div class="form-group">
 		    <label class="info-title" for="phone">Phone Number <span>*</span></label>
 		    <input type="text" class="form-control unicase-form-control text-input" id="phone" name="phone" placeholder="Phone..." >
-            @error('phone')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-            @enderror
+				@error('phone')
+				<span class="invalid-feedback" role="alert">
+					<strong>{{ $message }}</strong>
+				</span>
+				@enderror
 		</div>
         <div class="form-group">
 		    <label class="info-title" for="regpassword">Password <span>*</span></label>
 		    <input type="password" class="form-control unicase-form-control text-input" id="regpassword" name="password" placeholder="Password..." >
-            @error('regpassword')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-            @enderror
+				@error('regpassword')
+				<span class="invalid-feedback" role="alert">
+					<strong>{{ $message }}</strong>
+				</span>
+				@enderror
 		</div>
          <div class="form-group">
 		    <label class="info-title" for="password_confirmation">Confirm Password <span>*</span></label>
 		    <input type="password" class="form-control unicase-form-control text-input" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password...">
-            @error('password_confirmation')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-            @enderror
+				@error('password_confirmation')
+				<span class="invalid-feedback" role="alert">
+					<strong>{{ $message }}</strong>
+				</span>
+				@enderror
 		</div>
 	  	<button type="submit" class="btn-upper btn btn-primary checkout-page-button">Sign Up</button>
 
