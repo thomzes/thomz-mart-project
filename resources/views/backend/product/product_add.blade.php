@@ -415,6 +415,20 @@
                             </div>
                         </div>
                         {{-- end col md 6 --}}
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <h5>Digital Product<span class="text-danger"> pdf/xlx/csv*</span></h5>
+                                <div class="controls">
+                                    <input type="file" name="file" class="form-control"> 
+                                </div>
+                            </div>
+                        </div>
+                        {{-- end col md 4 --}}
+
+
+
+
                     </div>
                     {{-- end  new row --}}
                     
