@@ -43,8 +43,9 @@ class ReviewController extends Controller
 
     public function PendingReview()
     {
-        $review = Review::where('status', 0)->orderBy('id', 'DESC')
-                                            ->get();
+        $review = Review::where('status', 0)
+                        ->orderBy('id', 'DESC')
+                        ->get();
 
         return view('backend.review.pending_review', compact('review'));
 
@@ -66,8 +67,9 @@ class ReviewController extends Controller
 
     public function PublishReview()
     {
-        $review = Review::where('status', 1)->orderBy('id', 'DESC')
-                                            ->get();
+        $review = Review::where('status', 1)
+                        ->orderBy('id', 'DESC')
+                        ->get();
         
         return view('backend.review.publish_review', compact('review'));
 

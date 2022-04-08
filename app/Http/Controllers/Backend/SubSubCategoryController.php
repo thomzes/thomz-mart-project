@@ -21,14 +21,18 @@ class SubSubCategoryController extends Controller
     // Ajax Method
     public function GetSubCategory($category_id)
     {
-        $subcategory = SubCategory::where('category_id',$category_id)->orderBy('subcategory_name_en', 'ASC')->get();
+        $subcategory = SubCategory::where('category_id',$category_id)
+                                    ->orderBy('subcategory_name_en', 'ASC')
+                                    ->get();
         return json_encode($subcategory);
 
     } //end method
 
     public function GetSubSubCategory($subcategory_id)
     {
-        $subsubcat = SubSubCategory::where('subcategory_id',$subcategory_id)->orderBy('subsubcategory_name_en', 'ASC')->get();
+        $subsubcat = SubSubCategory::where('subcategory_id',$subcategory_id)
+                                    ->orderBy('subsubcategory_name_en', 'ASC')
+                                    ->get();
         return json_encode($subsubcat);
     }
 

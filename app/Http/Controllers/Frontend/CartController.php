@@ -94,7 +94,9 @@ class CartController extends Controller
     {
         if(Auth::check()) {
 
-            $exists = Wishlist::where('user_id', Auth::id())->where('product_id', $product_id)->first();
+            $exists = Wishlist::where('user_id', Auth::id())
+                                ->where('product_id', $product_id)
+                                ->first();
 
             if (!$exists) {
                 Wishlist::insert([
@@ -127,7 +129,10 @@ class CartController extends Controller
 
     public function CouponApply(Request $request)
     {
-        $coupon = Coupon::where('coupon_name', $request->coupon_name)->where('coupon_validity', '>=', Carbon::now()->format('Y-m-d'))->first();
+        $coupon = Coupon::where('coupon_name', $request->coupon_name)
+                        ->where('coupon_validity', '>=', Carbon::now()
+                        ->format('Y-m-d'))
+                        ->first();
         if($coupon) {
             $getTotal = Cart::total();
             $removeDot = str_replace('.', '', $getTotal);
