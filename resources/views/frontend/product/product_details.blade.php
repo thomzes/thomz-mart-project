@@ -136,6 +136,17 @@
 					<div class='col-sm-6 col-md-7 product-info-block'>
 						<div class="product-info">
 
+							@php
+								$reviewcount = App\Models\Review::where('product_id', $product->id)
+																->where('status', 1)
+																->latest()
+																->get();
+
+								$average = App\Models\Review::where('product_id', $product->id)
+																->where('status', 1)
+																->avg('rating');
+							@endphp
+
                             
 							<h1 class="name" id="pname">
                                 @if (session()->get('language') == 'indo')
@@ -148,11 +159,52 @@
 							<div class="rating-reviews m-t-20">
 								<div class="row">
 									<div class="col-sm-3">
-										<div class="rating rateit-small"></div>
+										
+										@if ($average == 0)
+										No Rating
+
+										@elseif ($average == 1 || $average < 2)
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star"></span>
+											<span class="fa fa-star"></span>
+											<span class="fa fa-star"></span>
+											<span class="fa fa-star"></span>
+										
+										@elseif ($average == 2 || $average < 3)
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star"></span>
+											<span class="fa fa-star"></span>
+											<span class="fa fa-star"></span>
+
+										@elseif ($average == 3 || $average < 4)
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star"></span>
+											<span class="fa fa-star"></span>
+
+										@elseif ($average == 4 || $average < 5)
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star"></span>
+
+										@elseif ($average == 5 || $average < 6)
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+
+										@endif
+
 									</div>
+
 									<div class="col-sm-8">
 										<div class="reviews">
-											<a href="#" class="lnk">(13 Reviews)</a>
+											<a href="#" class="lnk">({{ count($reviewcount) }} Reviews)</a>
 										</div>
 									</div>
 								</div><!-- /.row -->		
