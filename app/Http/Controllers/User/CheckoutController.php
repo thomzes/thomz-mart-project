@@ -13,14 +13,20 @@ class CheckoutController extends Controller
     // Shipping Routes Method AJAX
     public function GetDistrict($division_id)
     {
-        $district = ShipDistrict::where('division_id', $division_id)->orderBy('district_name', 'ASC')->get();
+        $district = ShipDistrict::where('division_id', $division_id)
+                                ->orderBy('district_name', 'ASC')
+                                ->get();
+
         return json_encode($district);
 
     } //end method
 
     public function GetState($district_id)
     {
-        $state = ShipState::where('district_id', $district_id)->orderBy('state_name', 'ASC')->get();
+        $state = ShipState::where('district_id', $district_id)
+                            ->orderBy('state_name', 'ASC')
+                            ->get();
+                            
         return json_encode($state);
 
     } //end method

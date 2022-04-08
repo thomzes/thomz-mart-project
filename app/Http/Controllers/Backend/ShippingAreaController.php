@@ -195,7 +195,10 @@ class ShippingAreaController extends Controller
     {
         $division = ShipDivision::orderBy('division_name', 'ASC')->get();
         $district = ShipDistrict::orderBy('district_name', 'ASC')->get();
-        $state = ShipState::with('division', 'district')->orderBy('id', 'DESC')->get();
+
+        $state = ShipState::with('division', 'district')
+                            ->orderBy('id', 'DESC')
+                            ->get();
 
         return view('backend.ship.state.view_state', compact('division', 'district', 'state'));
 
@@ -280,12 +283,6 @@ class ShippingAreaController extends Controller
 
 
     } //end method
-
-
-
-
-
-
 
 
     // END STATE METHOD

@@ -76,11 +76,6 @@ class StripeController extends Controller
 
             Mail::to($request->email)->send(new OrderMail($data));
 
-
-
-
-
-
         // End Send Mail
 
 
@@ -113,11 +108,6 @@ class StripeController extends Controller
         );
 
         return redirect()->route('dashboard')->with($notification);
-
-
-
-
-
 
 
     } //end method

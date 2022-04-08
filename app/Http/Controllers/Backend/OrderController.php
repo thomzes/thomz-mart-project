@@ -140,8 +140,7 @@ class OrderController extends Controller
 
     public function ConfirmToProcessing($order_id)
     {
-        Order::findOrFail($order_id)
-                ->update(['status' => 'Processing']);
+        Order::findOrFail($order_id)->update(['status' => 'Processing']);
 
       $notification = array(
 			'message' => 'Order Processing Successfully',
@@ -156,8 +155,7 @@ class OrderController extends Controller
 
     public function ProcessingToPicked($order_id)
     {
-        Order::findOrFail($order_id)
-                ->update(['status' => 'Picked']);
+        Order::findOrFail($order_id)->update(['status' => 'Picked']);
   
         $notification = array(
               'message' => 'Order Picked Successfully',
@@ -172,8 +170,7 @@ class OrderController extends Controller
 
     public function PickedToShipped($order_id)
     {
-        Order::findOrFail($order_id)
-                ->update(['status' => 'Shipped']);
+        Order::findOrFail($order_id)->update(['status' => 'Shipped']);
   
         $notification = array(
               'message' => 'Order Shipped Successfully',
@@ -199,8 +196,7 @@ class OrderController extends Controller
 
 
 
-        Order::findOrFail($order_id)
-                ->update(['status' => 'Delivered']);
+        Order::findOrFail($order_id)->update(['status' => 'Delivered']);
   
         $notification = array(
               'message' => 'Order Delivered Successfully',
@@ -219,6 +215,7 @@ class OrderController extends Controller
 
 		$order = Order::with('division','district','state','user')
                         ->where('id',$order_id)->first();
+                        
     	$orderItem = OrderItem::with('product')
                                 ->where('order_id',$order_id)
                                 ->orderBy('id','DESC')->get();

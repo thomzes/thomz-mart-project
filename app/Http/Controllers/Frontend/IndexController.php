@@ -21,22 +21,57 @@ class IndexController extends Controller
     public function Index()
     {
         $categories = Category::orderBy('category_name_en', 'ASC')->get();
-        $sliders = Slider::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
-        $products = Product::where('status', 1)->orderBy('id', 'DESC')->limit(6)->get();
+
+        $sliders = Slider::where('status', 1)
+                            ->orderBy('id', 'DESC')
+                            ->limit(3)
+                            ->get();
+
+        $products = Product::where('status', 1)
+                            ->orderBy('id', 'DESC')
+                            ->limit(6)
+                            ->get();
         
-        $featured = Product::where('featured', 1)->orderBy('id', 'DESC')->limit(6)->get();
-        $hot_deals = Product::where('hot_deals', 1)->where('discount_price', '!=', NULL)->orderBy('id', 'DESC')->limit(3)->get();
-        $special_offer = Product::where('special_offer', 1)->orderBy('id', 'DESC')->limit(3)->get();
-        $special_deals = Product::where('special_deals', 1)->orderBy('id', 'DESC')->limit(3)->get();
+        $featured = Product::where('featured', 1)
+                            ->orderBy('id', 'DESC')
+                            ->limit(6)
+                            ->get();
+
+        $hot_deals = Product::where('hot_deals', 1)
+                            ->where('discount_price', '!=', NULL)
+                            ->orderBy('id', 'DESC')
+                            ->limit(3)
+                            ->get();
+
+        $special_offer = Product::where('special_offer', 1)
+                                ->orderBy('id', 'DESC')
+                                ->limit(3)
+                                ->get();
+
+        $special_deals = Product::where('special_deals', 1)
+                                ->orderBy('id', 'DESC')
+                                ->limit(3)
+                                ->get();
 
         $skip_category_0 = Category::skip(0)->first();
-        $skip_product_0 = Product::where('status', 1)->where('category_id', $skip_category_0->id)->orderBy('id', 'DESC')->get();
+
+        $skip_product_0 = Product::where('status', 1)
+                                ->where('category_id', $skip_category_0->id)
+                                ->orderBy('id', 'DESC')
+                                ->get();
 
         $skip_category_1 = Category::skip(1)->first();
-        $skip_product_1 = Product::where('status', 1)->where('category_id', $skip_category_1->id)->orderBy('id', 'DESC')->get();
+        $skip_product_1 = Product::where('status', 1)
+                                ->where('category_id', $skip_category_1->id)
+                                ->orderBy('id', 'DESC')
+                                ->get();
         
         $skip_brand_0 = Brand::skip(0)->first();
-        $skip_brand_product_0 = Product::where('status', 1)->where('brand_id', $skip_brand_0->id)->orderBy('id', 'DESC')->get();
+
+        $skip_brand_product_0 = Product::where('status', 1)
+                                        ->where('brand_id', $skip_brand_0->id)
+                                        ->orderBy('id', 'DESC')
+                                        ->get();
 
 
         // return $skip_category->id;
@@ -146,7 +181,10 @@ class IndexController extends Controller
         $product_size_idn = explode(',', $size_idn);
 
         $cat_id = $product->category_id;
-        $relatedProduct = Product::where('category_id', $cat_id)->where('id', '!=', $id)->orderBy('id', 'DESC')->get();
+        $relatedProduct = Product::where('category_id', $cat_id)
+                                ->where('id', '!=', $id)
+                                ->orderBy('id', 'DESC')
+                                ->get();
         
 
         return view('frontend.product.product_details', compact('product', 'multiImg', 'product_color_en', 'product_color_idn', 'product_size_en', 'product_size_idn', 'relatedProduct'));
@@ -155,7 +193,12 @@ class IndexController extends Controller
 
     public function TagWiseProduct($tag)
     {
-        $products = Product::where('status',1)->where('product_tags_en',$tag)->where('product_tags_idn',$tag)->orderBy('id','DESC')->paginate(3);
+        $products = Product::where('status',1)
+                            ->where('product_tags_en',$tag)
+                            ->where('product_tags_idn',$tag)
+                            ->orderBy('id','DESC')
+                            ->paginate(3);
+
         $categories = Category::orderBy('category_name_en', 'ASC')->get();
 
 
@@ -166,9 +209,16 @@ class IndexController extends Controller
     // SubCategory Tags Data
     public function SubCateWiseProduct($subcat_id, $slug)
     {
-        $products = Product::where('status',1)->where('subcategory_id', $subcat_id)->orderBy('id','DESC')->paginate(6);
+        $products = Product::where('status',1)
+                            ->where('subcategory_id', $subcat_id)
+                            ->orderBy('id','DESC')
+                            ->paginate(6);
+
         $categories = Category::orderBy('category_name_en', 'ASC')->get();
-        $breadsubcat = SubCategory::with(['category'])->where('id', $subcat_id)->get();
+
+        $breadsubcat = SubCategory::with(['category'])
+                                ->where('id', $subcat_id)
+                                ->get();
 
         return view('frontend.product.subcategory_view', compact('products', 'categories', 'breadsubcat'));
 
@@ -177,10 +227,16 @@ class IndexController extends Controller
     // SubSubCategory Tags Data
     public function SubSubCateWiseProduct($subsubcat_id, $slug)
     {
-        $products = Product::where('status',1)->where('subsubcategory_id', $subsubcat_id)->orderBy('id','DESC')->paginate(6);
-        $categories = Category::orderBy('category_name_en', 'ASC')->get();
-        $breadsubsubcat = SubSubCategory::with(['category', 'subcategory'])->where('id', $subsubcat_id)->get();
+        $products = Product::where('status',1)
+                            ->where('subsubcategory_id', $subsubcat_id)
+                            ->orderBy('id','DESC')
+                            ->paginate(6);
 
+        $categories = Category::orderBy('category_name_en', 'ASC')->get();
+
+        $breadsubsubcat = SubSubCategory::with(['category', 'subcategory'])
+                                        ->where('id', $subsubcat_id)
+                                        ->get();
 
         return view('frontend.product.sub_subcategory_view', compact('products', 'categories', 'breadsubsubcat'));
 

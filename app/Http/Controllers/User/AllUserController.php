@@ -29,6 +29,7 @@ class AllUserController extends Controller
                         ->where('id', $order_id)
                         ->where('user_id', Auth::id())
                         ->first();
+
         $orderItem = OrderItem::with('product')
                                 ->where('order_id', $order_id)
                                 ->orderBy('id', 'DESC')
@@ -46,6 +47,7 @@ class AllUserController extends Controller
                         ->where('id', $order_id)
                         ->where('user_id', Auth::id())
                         ->first();
+
         $orderItem = OrderItem::with('product')
                                 ->where('order_id', $order_id)
                                 ->orderBy('id', 'DESC')
@@ -115,8 +117,7 @@ class AllUserController extends Controller
     {
         $invoice = $request->code;
 
-        $track = Order::where('invoice_no', $invoice)
-                        ->first();
+        $track = Order::where('invoice_no', $invoice)->first();
         
         if($track) {
             // echo "<pre>";
@@ -134,9 +135,6 @@ class AllUserController extends Controller
             return redirect()->back()->with($notification);
 
         }
-
-
-
 
     } //end method
 
