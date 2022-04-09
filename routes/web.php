@@ -21,6 +21,7 @@ use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Backend\SiteSettingController;
 use App\Http\Controllers\Backend\SubSubCategoryController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\ShopController;
 use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\User\CashController;
@@ -429,6 +430,11 @@ Route::post('/search', [IndexController::class, 'ProductSearch'])->name('product
 
 // Advance Search Product
 Route::post('search-product', [IndexController::class, 'SearchProduct']);
+
+
+// Shop Page Route
+Route::get('/shop', [ShopController::class, 'ShopPage'])->name('shop.page');
+
 
 
 
