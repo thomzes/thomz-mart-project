@@ -13,7 +13,6 @@
         <ul class="list-inline list-unstyled">
           <li><a href="#">Shop Page</a></li>
 
-
         </ul>
       </div>
       <!-- /.breadcrumb-inner --> 
@@ -21,6 +20,8 @@
     <!-- /.container --> 
   </div>
   <!-- /.breadcrumb -->
+
+
   <div class="body-content outer-top-xs">
     <div class='container'>
 
@@ -58,13 +59,23 @@
                 <div class="sidebar-widget-body">
                   <div class="accordion">
 
+                    @if (!empty($_GET['category']))
+
+                      @php
+                          $filterCat = explode(',',$_GET['category']);
+                      @endphp
+
+                    @endif
+
                     @foreach($categories as $category)
                     <div class="accordion-group">
                       <div class="accordion-heading"> 
 
                         <label class="form-check-label">
 
-                          <input type="checkbox" class="form-check-input" name="category[]" value="{{ $category->category_slug_en }}" onchange="this.form.submit()">
+                          <input type="checkbox" class="form-check-input" name="category[]" value="{{ $category->category_slug_en }}" 
+                            @if(!empty($filterCat) && in_array($category->category_slug_en,$filterCat)) checked @endif 
+                            onchange="this.form.submit()">
 
                           @if (session()->get('language') == 'indo')
                                 {{ $category->category_name_idn }}
@@ -72,18 +83,10 @@
                                 {{ $category->category_name_en }}
                           @endif
                           
-
-
-
                         </label>
-                      
-                      
                       
                       </div>
                       <!-- /.accordion-heading -->
-
-
-
 
                     </div>
                     <!-- /.accordion-group -->
@@ -95,8 +98,70 @@
                   <!-- /.accordion --> 
                 </div>
                 <!-- /.sidebar-widget-body --> 
+            
+
+
+
+
+
+
+              {{--==================== BRAND FILTER ========================--}}
+
+              <div class="widget-header">
+                <h4 class="widget-title">Brand Filter</h4>
               </div>
-              <!-- /.sidebar-widget --> 
+              <div class="sidebar-widget-body">
+                <div class="accordion">
+
+                  @if (!empty($_GET['brand']))
+
+                    @php
+                        $filterBrand = explode(',',$_GET['brand']);
+                    @endphp
+
+                  @endif
+
+                  @foreach($brands as $brand)
+                  <div class="accordion-group">
+                    <div class="accordion-heading"> 
+
+                      <label class="form-check-label">
+
+                        <input type="checkbox" class="form-check-input" name="brand[]" value="{{ $brand->brand_slug_en }}" 
+                          @if(!empty($filterBrand) && in_array($brand->brand_slug_en,$filterBrand)) checked @endif 
+                          onchange="this.form.submit()">
+
+                        @if (session()->get('language') == 'indo')
+                              {{ $brand->brandy_name_idn }}
+                        @else
+                              {{ $brand->brand_name_en }}
+                        @endif
+                        
+                      </label>
+                    
+                    </div>
+                    <!-- /.accordion-heading -->
+
+                  </div>
+                  <!-- /.accordion-group -->
+                  @endforeach
+                  {{-- END FOREACH CATEGORY --}}
+                  
+                  
+                </div>
+                <!-- /.accordion --> 
+              </div>
+              <!-- /.sidebar-widget-body --> 
+            </div>
+            <!-- /.sidebar-widget --> 
+
+
+                
+
+
+
+
+
               <!-- ============================================== SIDEBAR CATEGORY : END ============================================== --> 
 
 
@@ -561,7 +626,7 @@
 
             <!-- /.tab-content -->
             
-            {{ $products->links('vendor.pagination.custom') }}
+            {{ $products->appends($_GET)->links('vendor.pagination.custom') }}
             
           </div>
           <!-- /.search-result-container --> 
@@ -623,6 +688,7 @@
     
   </div>
   <!-- /.body-content --> 
+  
   
 
 
