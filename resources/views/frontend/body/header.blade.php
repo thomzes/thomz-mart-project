@@ -54,7 +54,7 @@
               
               <li>
                 @auth
-                <a href="{{ route('login') }}"><i class="icon fa fa-user"></i>
+                <a href="{{ route('dashboard') }}"><i class="icon fa fa-user"></i>
                   @if (session()->get('language') == 'indo')
                     Profile Pengguna
                   @else
@@ -219,7 +219,7 @@
                       <span class='price' id="cartSubTotal"> </span></div>
                       {{-- ERROR MINICART --}}
                     <div class="clearfix"></div>
-                    <a href="checkout.html" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a> </div>
+                    <a href="{{ route('checkout') }}" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a> </div>
                   <!-- /.cart-total--> 
                   
                 </li>
